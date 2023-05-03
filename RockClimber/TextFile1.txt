@@ -1,0 +1,79 @@
+static function X2AbilityTemplate Overdrive()
+{
+	local X2AbilityTemplate						Template;
+	local X2AbilityCooldown                     Cooldown;
+	local X2Effect_GrantActionPoints            PointEffect;
+	local X2Effect_Persistent			        ActionPointPersistEffect;
+	local X2Effect_DLC_3Overdrive               OverdriveEffect;
+	local X2Condition_AbilityProperty           AbilityCondition;
+	local X2Effect_PersistentTraversalChange    WallbreakEffect;
+	local X2Effect_PerkAttachForFX              PerkAttachEffect;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'Overdrive');
+	Template.RemoveTemplateAvailablility(Template.BITFIELD_GAMEAREA_Multiplayer);
+
+	Cooldown = new class'X2AbilityCooldown';
+	Cooldown.iNumTurns = default.OVERDRIVE_COOLDOWN;
+	Template.AbilityCooldown = Cooldown;
+
+	Template.AbilityCosts.AddItem(default.FreeActionCost);
+
+	Template.AbilitySourceName = 'eAbilitySource_Perk';
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_AlwaysShow;
+	Template.Hostility = eHostility_Neutral;
+	Template.IconImage = "img:///UILibrary_DLC3Images.UIPerk_spark_overdrive";
+
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger); 
+
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+	Template.AddShooterEffectExclusions();
+
+	PointEffect = new class'X2Effect_GrantActionPoints';
+	PointEffect.NumActionPoints = 1;
+	PointEffect.PointType = class'X2CharacterTemplateManager'.default.StandardActionPoint;
+	Template.AddTargetEffect(PointEffect);
+
+	// A persistent effect for the effects code to attach a duration to
+	ActionPointPersistEffect = new class'X2Effect_Persistent';
+	ActionPointPersistEffect.EffectName = 'OverdrivePerk';
+	ActionPointPersistEffect.BuildPersistentEffect( 1, false, true, false, eGameRule_PlayerTurnEnd );
+	Template.AddTargetEffect(ActionPointPersistEffect);
+
+	OverdriveEffect = new class'X2Effect_DLC_3Overdrive';
+	OverdriveEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnBegin);
+	OverdriveEffect.SetDisplayInfo(ePerkBuff_Bonus, Template.LocFriendlyName, Template.GetMyHelpText(), Template.IconImage, , , Template.AbilitySourceName);
+	Template.AddTargetEffect(OverdriveEffect);
+
+	// A persistent effect for the effects code to attach a duration to
+	PerkAttachEffect = new class'X2Effect_PerkAttachForFX';
+	PerkAttachEffect.EffectName = 'AdaptiveAimPerk';
+	PerkAttachEffect.BuildPersistentEffect( 1, false, true, false, eGameRule_PlayerTurnEnd );
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('AdaptiveAim');
+	PerkAttachEffect.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect(PerkAttachEffect);
+
+	AbilityCondition = new class'X2Condition_AbilityProperty';
+	AbilityCondition.OwnerHasSoldierAbilities.AddItem('WreckingBall');
+	WallbreakEffect = new class'X2Effect_PersistentTraversalChange';
+	WallbreakEffect.AddTraversalChange(eTraversal_BreakWall, true); // Change to bCanUse_eTraversal_WallClimb
+	WallbreakEffect.EffectName = 'WreckingBallTraversal';
+	WallbreakEffect.DuplicateResponse = eDupe_Ignore;
+	WallbreakEffect.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
+	WallbreakEffect.TargetConditions.AddItem(AbilityCondition);
+	Template.AddTargetEffect(WallbreakEffect);
+
+	Template.CustomFireAnim = 'FF_Overdrive';
+	Template.bShowActivation = true;
+	Template.bSkipExitCoverWhenFiring = true;
+
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	Template.PostActivationEvents.AddItem('OverdriveActivated');
+	
+	return Template;
+}
+
