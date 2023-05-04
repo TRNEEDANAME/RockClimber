@@ -27,6 +27,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	switch (TagText)
 	{
 		case 'LocName':	OutString = string(class'ClassName'.default.ConfigName);	return true;
+		case 'Climb_Ab_NumTurn':	OutString = string(class'ClassName'.default.TR_RockClimb_NumTurns_Ability);	return true;
 		//NOT SOMETHING MATCHED HERE .. KEEP LOOKING
 		default:	return false;		break;
     }  
