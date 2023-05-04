@@ -6,12 +6,11 @@
 
 class X2Ability_RockClimber extends X2Ability config (RockClimb);
 
-var config int TR_RockClimb_AP_Cost_Ability, TR_RockClimb_Cooldown_Ability, TR_RockClimb_InitialCharge_Ability, TR_RockClimb_NumCharge_Ability;
-var config bool TR_RockClimb_IsFree_Ability, TR_RockClimb_IsCrossClass, TR_RockClimbAbility_HasCharge;
+var config int TR_RockClimb_AP_Cost_Ability, TR_RockClimb_Cooldown_Ability, TR_RockClimb_InitialCharge_Ability, TR_RockClimb_NumCharge_Ability, TR_RockClimb_NumTurns_Ability;
+var config bool TR_RockClimb_IsFree_Ability, TR_RockClimb_IsCrossClass, TR_RockClimbAbility_HasCharge, TR_RockClimb_IsPassive_Ability;
 
-var config int TR_RockClimb_AP_Cost_Item, TR_RockClimb_Cooldown_Item, TR_RockClimb_InitialCharge_Item, TR_RockClimb_NumCharge_Item;
-var config bool TR_RockClimb_IsFree_Item, TR_RockClimb_ItemConsume;
-
+var config int TR_RockClimb_AP_Cost_Item, TR_RockClimb_Cooldown_Item, TR_RockClimb_InitialCharge_Item, TR_RockClimb_NumCharge_Item, TR_RockClimb_NumTurns_Item;
+var config bool TR_RockClimb_IsFree_Item, TR_RockClimb_ItemConsume, TR_RockClimb_IsPassive_Item;
 
 //add the new abilities
 static function array<X2DataTemplate> CreateTemplates()
@@ -89,12 +88,13 @@ static function X2AbilityTemplate TR_RockClimb_Ability(name TemplateName)
 
 	//Conditional
 	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
-	
+
+
 	Climb = new class'X2Effect_PersistentTraversalChange';
 	Climb.AddTraversalChange(eTraversal_WallClimb, true);
 	Climb.EffectName = 'WreckingBallTraversal';
 	Climb.DuplicateResponse = eDupe_Ignore;
-	Climb.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
+	Climb.BuildPersistentEffect(default.TR_RockClimb_NumTurns_Ability, default.TR_RockClimb_IsPassive_Ability, true, false, eGameRule_PlayerTurnEnd);
 	Climb.TargetConditions.AddItem(AbilityCondition);
 	Template.AddTargetEffect(Climb);
 
@@ -180,7 +180,7 @@ static function X2AbilityTemplate TR_RockClimb_Item(name TemplateName)
 	Climb.AddTraversalChange(eTraversal_WallClimb, true);
 	Climb.EffectName = 'WreckingBallTraversal';
 	Climb.DuplicateResponse = eDupe_Ignore;
-	Climb.BuildPersistentEffect(1, false, true, false, eGameRule_PlayerTurnEnd);
+	Climb.BuildPersistentEffect(default.TR_RockClimb_NumTurns_Item, default.TR_RockClimb_IsPassive_Item, true, false, eGameRule_PlayerTurnEnd);
 	Climb.TargetConditions.AddItem(AbilityCondition);
 	Template.AddTargetEffect(Climb);
 
