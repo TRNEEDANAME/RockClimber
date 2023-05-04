@@ -4,9 +4,8 @@
 //  PURPOSE : Create the Rock climb item
 //---------------------------------------------------------------------------------------
 
-class X2Item_RockClimb extends X2Item_DefaultUtilityItems config (Game);
+class X2Item_RockClimb extends X2Item_DefaultUtilityItems config (RockClimb);
 
-var config string RUSTYBRIGHTEYES_ICONPATH;
 var config bool TR_RockClimb_CanBeBuild, TR_RockClimb_IsStratingItem, TR_RockClimb_IsInfinite;
 var config int TR_RockClimb_TradeValue, TR_RockClimb_Cost;
 
@@ -14,12 +13,12 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Items;
 
-	Items.AddItem(Create_BlindEyeDrops());
+	Items.AddItem(Create_TR_RockClimb_Item());
 
 	return Items;
 }
 
-static function X2DataTemplate Create_BlindEyeDrops()
+static function X2DataTemplate Create_TR_RockClimb_Item()
 {
 	local X2EquipmentTemplate	Template;
 	local ArtifactCost			Resources;
@@ -31,6 +30,9 @@ static function X2DataTemplate Create_BlindEyeDrops()
 	Template.ItemCat = 'heal';
 	Template.InventorySlot = eInvSlot_Utility;
 	Template.EquipSound = "StrategyUI_Medkit_Equip";
+
+	Template.Abilities.AddItem('TR_RockClimb_Item');
+
 
 	Template.CanBeBuilt		= default.TR_RockClimb_CanBeBuild;
 	Template.StartingItem	= default.TR_RockClimb_IsStratingItem;
