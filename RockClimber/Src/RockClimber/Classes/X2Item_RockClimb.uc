@@ -23,7 +23,7 @@ static function X2DataTemplate Create_TR_RockClimb_Item()
 	local X2EquipmentTemplate	Template;
 	local ArtifactCost			Resources;
 
-	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'BlindEyeDrops');
+	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'TR_RockClimb_Item');
 
 	Template.strImage = "img:///ToAdd";
 

@@ -1,16 +1,17 @@
 [TR_RockClimb_Ability X2AbilityTemplate]
-LocFriendlyName="Rock climbing training"
-LocLongDescription="You are trained in rock climbing, this will allow you to climb any walls for <Ability:Climb_Ab_NumTurn> turns."
-LocHelpText="Shooting at a target grants bonus Aim to allies against that target"
-LocPromotionPopupText="<Bullet/> Directed <Ability:WeaponName/>-specific abilities will grant Holo Targeting.<br/><Bullet/> Any <Ability:ClassName/> abilities that target multiple units will not grant Holo Targeting.<br/>"
-LocFlyOverText="Rock climbing training"
+LocFriendlyName="Rock Climb"
+LocLongDescription="Allows the user to scale vertical surfaces quickly. Can be used <Ability:TR_RockClimb_NumCharge_Ability></Ability:TR_RockClimb_NumCharge_Ability/> times per mission, with a recharge time of <Ability:TR_RockClimb_Cooldown_Ability/> turns. Each use costs <Ability:TR_RockClimb_AP_Cost_Ability/> action points. "
+LocHelpText="Allows the user to scale vertical surfaces quickly."
+LocPromotionPopupText="<Bullet/> Climb walls"
+LocFlyOverText="Rock Climb"
+
 
 [TR_RockClimb_Item X2AbilityTemplate]
-LocFriendlyName="Rock climbing equipment"
-LocLongDescription="Any directed <Ability:WeaponName/> shot, hit or miss, will mark the target, increasing your squad's aim by +<Ability:HOLOTARGETAIMBONUS/> against this target."
-LocHelpText="Shooting at a target grants bonus Aim to allies against that target"
-LocPromotionPopupText="<Bullet/> Directed <Ability:WeaponName/>-specific abilities will grant Holo Targeting.<br/><Bullet/> Any <Ability:ClassName/> abilities that target multiple units will not grant Holo Targeting.<br/>"
-LocFlyOverText="Rock climbing equipment"
+LocFriendlyName="Rock Climbing Gear"
+LocLongDescription="This gear allows the user to scale vertical surfaces quickly. Can be used <Ability:TR_RockClimb_NumCharge_Item/> times per mission, with a recharge time of <Ability:TR_RockClimb_Cooldown_Item/> turns. Each use costs <Ability:TR_RockClimb_AP_Cost_Item/> action points."
+LocHelpText="Allows the user to scale vertical surfaces quickly."
+LocPromotionPopupText="<Bullet/> Climb walls"
+LocFlyOverText="Rock Climbing Gear"
 
 [BattleScanner X2WeaponTemplate]
 FriendlyName="Battle Scanner"
@@ -19,3 +20,12 @@ BriefSummary="The Battle Scanner provides extra vision on the battlefield. Soldi
 TacticalText="<Bullet/> Battle Scanners reveal an area hidden by the \"fog of war\" for multiple turns.\n<Bullet/> Battle Scanners also reveal hidden or disguised enemies."
 AbilityDescName="shotgun"
 
+[TR_RockClimb_Template]
+FriendlyName="Rock climbing gear"
+FriendlyNamePlural="Rock climbing gears"
+BriefSummary="This gear allows the user to scale vertical surfaces quickly, making it useful for quickly accessing high or difficult-to-reach areas."
+TacticalText="Allows the user to scale vertical surfaces quickly."
+AbilityDescName="Rock climbing gear"
+
+[ClausMecShotgun_CV_Schematic X2SchematicTemplate]
+m_strClassLabel="RANGER"
