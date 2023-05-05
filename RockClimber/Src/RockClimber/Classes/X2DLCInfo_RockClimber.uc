@@ -57,9 +57,29 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 
 	switch (TagText)
 	{
-		case 'LocName':	OutString = string(class'ClassName'.default.ConfigName);	return true;
-		case 'Climb_Ab_NumTurn':	OutString = string(class'ClassName'.default.TR_RockClimb_NumTurns_Ability);	return true;
-		//NOT SOMEObject MATCHED HERE .. KEEP LOOKING
+		case 'TR_RockClimb_NumCharge_Ability'   :	OutString = string(class'ClassName'.default.TR_RockClimb_NumCharge_Ability);	return true;
+		case 'TR_RockClimb_Cooldown_Ability'    :	OutString = string(class'ClassName'.default.TR_RockClimb_Cooldown_Ability);	return true;
+		case 'TR_RockClimb_AP_Cost_Ability'     :	OutString = string(class'ClassName'.default.TR_RockClimb_AP_Cost_Ability);	return true;
+		
+        case 'TR_RockClimb_NumCharge_Item'      :	OutString = string(class'ClassName'.default.TR_RockClimb_NumCharge_Item);	return true;
+		case 'TR_RockClimb_Cooldown_Item'       :	OutString = string(class'ClassName'.default.TR_RockClimb_Cooldown_Item);	return true;
+		case 'TR_RockClimb_AP_Cost_Item'        :	OutString = string(class'ClassName'.default.TR_RockClimb_AP_Cost_Item);	return true;
+
+        case 'TR_RockClimb_NumCharge_Item_Armor'      :	OutString = string(class'ClassName'.default.TR_RockClimb_NumCharge_Item_Armor);	return true;
+		case 'TR_RockClimb_Cooldown_Item_Armor'       :	OutString = string(class'ClassName'.default.TR_RockClimb_Cooldown_Item_Armor);	return true;
+		case 'TR_RockClimb_AP_Cost_Item_Armor'        :	OutString = string(class'ClassName'.default.TR_RockClimb_AP_Cost_Item);	return true;
 		default:	return false;		break;
     }  
 }
+
+// TR_RockClimb_InitialCharge_Ability
+// TR_RockClimb_NumTurns_Ability
+
+// TR_RockClimb_InitialCharge_Item
+// TR_RockClimb_NumTurns_Item
+
+// TR_RockClimb_AP_Cost_Item_Armor
+// TR_RockClimb_Cooldown_Item_Armor
+// TR_RockClimb_InitialCharge_Item_Armor
+// TR_RockClimb_NumCharge_Item_Armor
+// TR_RockClimb_NumTurns_Item_Armor

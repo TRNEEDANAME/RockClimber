@@ -13,7 +13,7 @@ var config int TR_RockClimb_AP_Cost_Item, TR_RockClimb_Cooldown_Item, TR_RockCli
 var config bool TR_RockClimb_IsFree_Item, TR_RockClimb_ItemConsume, TR_RockClimb_IsPassive_Item, TR_RockClimbItem_HasCharge;
 
 var config int TR_RockClimb_AP_Cost_Item_Armor, TR_RockClimb_Cooldown_Item_Armor, TR_RockClimb_InitialCharge_Item_Armor, TR_RockClimb_NumCharge_Item_Armor, TR_RockClimb_NumTurns_Item_Armor;
-var config bool TR_RockClimb_IsFree_Item_Armor, TR_RockClimb_IsPassive_Item_Armor, TR_RockClimbItem_Armor_HasCharge;
+var config bool TR_RockClimb_IsFree_Item_Armor, TR_RockClimb_IsPassive_Item_Armor, TR_RockClimb_Item_Armor_HasCharge;
 
 
 
@@ -241,7 +241,7 @@ static function X2AbilityTemplate TR_RockClimb_Item_Armor(name TemplateName)
 	Cooldown.iNumTurns = default.TR_RockClimb_Cooldown_Item_Armor; 
 	Template.AbilityCooldown = Cooldown;
 
-	if (default.TR_RockClimbItem_Armor_HasCharge == true)
+	if (default.TR_RockClimb_Item_Armor_HasCharge == true)
 	{
 		Charges = new class'X2AbilityCharges';
 		Charges.InitialCharges = default.TR_RockClimb_InitialCharge_Item_Armor;
