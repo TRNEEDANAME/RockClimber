@@ -1,6 +1,6 @@
 [TR_RockClimb_Ability X2AbilityTemplate]
 LocFriendlyName="Rock Climb"
-LocLongDescription="Allows the user to scale vertical surfaces quickly. Can be used <Ability:TR_RockClimb_NumCharge_Ability></Ability:TR_RockClimb_NumCharge_Ability/> times per mission, with a recharge time of <Ability:TR_RockClimb_Cooldown_Ability/> turns. Each use costs <Ability:TR_RockClimb_AP_Cost_Ability/> action points. "
+LocLongDescription="Allows the user to scale vertical surfaces quickly. Can be used <Ability:TR_RockClimb_NumCharge_Ability> times per mission, with a recharge time of <Ability:TR_RockClimb_Cooldown_Ability/> turns. Each use costs <Ability:TR_RockClimb_AP_Cost_Ability/> action points. "
 LocHelpText="Allows the user to scale vertical surfaces quickly."
 LocPromotionPopupText="<Bullet/> Climb walls"
 LocFlyOverText="Rock Climb"

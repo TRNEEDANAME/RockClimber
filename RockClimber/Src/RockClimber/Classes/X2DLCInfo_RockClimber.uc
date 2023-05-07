@@ -71,3 +71,15 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 		default:	return false;		break;
     }  
 }
+
+// TR_RockClimb_InitialCharge_Ability
+// TR_RockClimb_NumTurns_Ability
+
+// TR_RockClimb_InitialCharge_Item
+// TR_RockClimb_NumTurns_Item
+
+// TR_RockClimb_AP_Cost_Item_Armor
+// TR_RockClimb_Cooldown_Item_Armor
+// TR_RockClimb_InitialCharge_Item_Armor
+// TR_RockClimb_NumCharge_Item_Armor
+// TR_RockClimb_NumTurns_Item_Armor
