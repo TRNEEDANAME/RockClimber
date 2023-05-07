@@ -24,6 +24,12 @@
     <Folder Include="ContentForCook\" />
     <Folder Include="Src\RockClimber\" />
     <Folder Include="Src\RockClimber\Classes\" />
+    <Folder Include="Config\Compatibility\" />
+    <Folder Include="Config\Compatibility\ArmourUpgrade\" />
+    <Folder Include="Config\Compatibility\Covert Infiltration\" />
+    <Folder Include="Config\Compatibility\Proving Ground Overhaul\" />
+    <Folder Include="Src\WallClimbOverride\" />
+    <Folder Include="Src\WallClimbOverride\Classes\" />
     <Content Include="ReadMe.txt" />
     <Content Include="ModPreview.jpg" />
     <Content Include="ContentOptions.json" />
@@ -46,5 +52,11 @@
     <Content Include="Src\RockClimber\Classes\X2Ability_RockClimber.uc" />
     <Content Include="Src\RockClimber\Classes\X2Effect_WallClimbing.uc" />
     <Content Include="Src\RockClimber\Classes\X2Item_RockClimb.uc" />
+    <Content Include="Config\Base\XComGameData.ini" />
+    <Content Include="Config\Compatibility\ArmourUpgrade\XComArmorUpgrades.ini" />
+    <Content Include="Config\Compatibility\Covert Infiltration\XComInfiltration.ini" />
+    <Content Include="Config\Compatibility\Proving Ground Overhaul\XComPGOverhaulExperimentalItems.ini" />
+    <Content Include="Config\Compatibility\Proving Ground Overhaul\XComStrategyTuning.ini" />
+    <Content Include="Src\WallClimbOverride\Classes\X2Action_MoveClimbWall_Override.uc" />
   </ItemGroup>
 </Project>
