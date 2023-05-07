@@ -5,7 +5,6 @@ LocHelpText="Allows the user to scale vertical surfaces quickly."
 LocPromotionPopupText="<Bullet/> Climb walls"
 LocFlyOverText="Rock Climb"
 
-
 [TR_RockClimb_Item X2AbilityTemplate]
 LocFriendlyName="Rock Climbing Gear"
 LocLongDescription="This gear allows the user to scale vertical surfaces quickly. Can be used <Ability:TR_RockClimb_NumCharge_Item/> times per mission, with a recharge time of <Ability:TR_RockClimb_Cooldown_Item/> turns. Each use costs <Ability:TR_RockClimb_AP_Cost_Item/> action points."
@@ -13,19 +12,31 @@ LocHelpText="Allows the user to scale vertical surfaces quickly."
 LocPromotionPopupText="<Bullet/> Climb walls"
 LocFlyOverText="Rock Climbing Gear"
 
-[BattleScanner X2WeaponTemplate]
-FriendlyName="Battle Scanner"
-FriendlyNamePlural="Battle Scanners"
-BriefSummary="The Battle Scanner provides extra vision on the battlefield. Soldiers deploy it like a grenade, throwing it to a hidden area of the map that they want to reveal. Any hidden or disguised enemies will be revealed as well."
-TacticalText="<Bullet/> Battle Scanners reveal an area hidden by the \"fog of war\" for multiple turns.\n<Bullet/> Battle Scanners also reveal hidden or disguised enemies."
-AbilityDescName="shotgun"
+[TR_RockClimb_Item_Armour X2AbilityTemplate]
+LocFriendlyName="Rock Climbing armour"
+LocLongDescription="This armour allows the user to scale vertical surfaces quickly. Can be used <Ability:TR_RockClimb_NumCharge_Item_Armour/> times per mission, with a recharge time of <Ability:TR_RockClimb_Cooldown_Item_Armour/> turns. Each use costs <Ability:TR_RockClimb_AP_Cost_Item_Armour/> action points."
+LocHelpText="Allows the user to scale vertical surfaces quickly."
+LocPromotionPopupText="<Bullet/> Climb walls"
+LocFlyOverText="Rock Climbing armour"
 
-[TR_RockClimb_Template]
+
+[TR_RockClimbingVest X2EquipmentTemplate]
+FriendlyName="Rock climbing vest"
+FriendlyNamePlural="Rock climbing vests"
+BriefSummary="This vest allows the user to scale vertical surfaces quickly, making it useful for quickly accessing high or difficult-to-reach areas. \n <Bullet/> It also boost the soldier's health by <Ability:TR_RockClimb_Vest_HealthBuff>, mobility by <Ability:RockClimbingVest_MobilityBonus/>."
+TacticalText="Allows the user to scale vertical surfaces quickly."
+AbilityDescName="Rock climbing vest"
+
+[TR_RockClimb_Item X2EquipmentTemplate]
 FriendlyName="Rock climbing gear"
 FriendlyNamePlural="Rock climbing gears"
 BriefSummary="This gear allows the user to scale vertical surfaces quickly, making it useful for quickly accessing high or difficult-to-reach areas."
 TacticalText="Allows the user to scale vertical surfaces quickly."
 AbilityDescName="Rock climbing gear"
 
-[ClausMecShotgun_CV_Schematic X2SchematicTemplate]
-m_strClassLabel="RANGER"
+[BattleScanner X2WeaponTemplate]
+FriendlyName="Battle Scanner"
+FriendlyNamePlural="Battle Scanners"
+BriefSummary="The Battle Scanner provides extra vision on the battlefield. Soldiers deploy it like a grenade, throwing it to a hidden area of the map that they want to reveal. Any hidden or disguised enemies will be revealed as well."
+TacticalText="<Bullet/> Battle Scanners reveal an area hidden by the \"fog of war\" for multiple turns.\n<Bullet/> Battle Scanners also reveal hidden or disguised enemies."
+AbilityDescName="shotgun"

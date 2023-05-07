@@ -41,10 +41,10 @@ static event OnPostTemplatesCreated()
     }
     foreach default.RockClimb_Armours (Object)
     {
-        ArmoursTemplate = X2ArmorTemplate(ItemMgr.FindItemTemplate(Object));
+        ArmoursTemplate = X2ArmourTemplate(ItemMgr.FindItemTemplate(Object));
         if (ArmoursTemplate != none)
         {
-            ArmoursTemplate.Abilities.AddItem('TR_RockClimb_Item_Armor');
+            ArmoursTemplate.Abilities.AddItem('TR_RockClimb_Item_Armour');
         }
     }
 }
@@ -57,17 +57,21 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 
 	switch (TagText)
 	{
-		case 'TR_RockClimb_NumCharge_Ability':	OutString = string(class'ClassName'.default.TR_RockClimb_NumCharge_Ability);	return true;
-		case 'TR_RockClimb_Cooldown_Ability':	OutString = string(class'ClassName'.default.TR_RockClimb_Cooldown_Ability);	return true;
-		case 'TR_RockClimb_AP_Cost_Ability':	OutString = string(class'ClassName'.default.TR_RockClimb_AP_Cost_Ability);	return true;
+		case 'TR_RockClimb_NumCharge_Ability':	OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_NumCharge_Ability);	return true;
+		case 'TR_RockClimb_Cooldown_Ability':	OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_Cooldown_Ability);	return true;
+		case 'TR_RockClimb_AP_Cost_Ability':	OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_AP_Cost_Ability);	return true;
 
-		case 'TR_RockClimb_NumCharge_Item':	OutString = string(class'ClassName'.default.TR_RockClimb_NumCharge_Item);	return true;
-		case 'TR_RockClimb_Cooldown_Item':	OutString = string(class'ClassName'.default.TR_RockClimb_Cooldown_Item);	return true;
-		case 'TR_RockClimb_AP_Cost_Item':	OutString = string(class'ClassName'.default.TR_RockClimb_AP_Cost_Item);	return true;
+		case 'TR_RockClimb_NumCharge_Item':	OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_NumCharge_Item);	return true;
+		case 'TR_RockClimb_Cooldown_Item':	OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_Cooldown_Item);	return true;
+		case 'TR_RockClimb_AP_Cost_Item':	OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_AP_Cost_Item);	return true;
 
-        case 'TR_RockClimb_NumCharge_Item_Armour':	OutString = string(class'ClassName'.default.TR_RockClimb_InitialCharge_Item_Armor);	return true;
-		case 'TR_RockClimb_Cooldown_Item_Armour':	OutString = string(class'ClassName'.default.TR_RockClimb_Cooldown_Item_Armor);	return true;
-		case 'TR_RockClimb_AP_Cost_Item_Armour':	OutString = string(class'ClassName'.default.TR_RockClimb_AP_Cost_Item_Armor);	return true;
+        case 'TR_RockClimb_NumCharge_Item_Armour':	OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_InitialCharge_Item_Armour);	return true;
+		case 'TR_RockClimb_Cooldown_Item_Armour':	OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_Cooldown_Item_Armour);	return true;
+		case 'TR_RockClimb_AP_Cost_Item_Armour':	OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_AP_Cost_Item_Armour);	return true;
+
+        case 'TR_RockClimb_Vest_HealthBuff':	OutString = string(class'X2Ability_RockClimber'.default.RockClimbingVest_HealthBonus);	return true;
+		case 'TR_RockClimb_Vest_MobilityBuff':	OutString = string(class'X2Ability_RockClimber'.default.RockClimbingVest_MobilityBonus);	return true;
+
 		default:	return false;		break;
     }  
 }

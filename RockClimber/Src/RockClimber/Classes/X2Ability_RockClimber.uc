@@ -12,12 +12,11 @@ var config bool TR_RockClimb_IsFree_Ability, TR_RockClimb_IsCrossClass, TR_RockC
 var config int TR_RockClimb_AP_Cost_Item, TR_RockClimb_Cooldown_Item, TR_RockClimb_InitialCharge_Item, TR_RockClimb_NumCharge_Item, TR_RockClimb_NumTurns_Item;
 var config bool TR_RockClimb_IsFree_Item, TR_RockClimb_ItemConsume, TR_RockClimb_IsPassive_Item, TR_RockClimbItem_HasCharge;
 
-var config int TR_RockClimb_AP_Cost_Item_Armor, TR_RockClimb_Cooldown_Item_Armor, TR_RockClimb_InitialCharge_Item_Armor, TR_RockClimb_NumCharge_Item_Armor, TR_RockClimb_NumTurns_Item_Armor;
-var config bool TR_RockClimb_IsFree_Item_Armor, TR_RockClimb_IsPassive_Item_Armor, TR_RockClimb_Item_Armor_HasCharge;
+var config int TR_RockClimb_AP_Cost_Item_Armour, TR_RockClimb_Cooldown_Item_Armour, TR_RockClimb_InitialCharge_Item_Armour, TR_RockClimb_NumCharge_Item_Armour, TR_RockClimb_NumTurns_Item_Armour;
+var config bool TR_RockClimb_IsFree_Item_Armour, TR_RockClimb_IsPassive_Item_Armour, TR_RockClimb_Item_Armour_HasCharge;
 
+var config int RockClimbingVest_HealthBonus, RockClimbingVest_MobilityBonus;
 
-
-//add the new abilities
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
@@ -25,7 +24,7 @@ static function array<X2DataTemplate> CreateTemplates()
 	Templates.AddItem(TR_RockClimb_Ability('TR_RockClimb_Ability'));
 
 	Templates.AddItem(TR_RockClimb_Item('TR_RockClimb_Item'));
-	Templates.AddItem(TR_RockClimb_Item('TR_RockClimb_Item_Armor'));
+	Templates.AddItem(TR_RockClimb_Item('TR_RockClimb_Item_Armour'));
 
 	return Templates;
 }
@@ -203,7 +202,7 @@ static function X2AbilityTemplate TR_RockClimb_Item(name TemplateName)
 }
 
 
-static function X2AbilityTemplate TR_RockClimb_Item_Armor(name TemplateName)
+static function X2AbilityTemplate TR_RockClimb_Item_Armour(name TemplateName)
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_PersistentTraversalChange    Climb;
@@ -232,23 +231,23 @@ static function X2AbilityTemplate TR_RockClimb_Item_Armor(name TemplateName)
 	Template.bUniqueSource = true;
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
-	ActionPointCost.iNumPoints = default.TR_RockClimb_AP_Cost_Item_Armor;
-	ActionPointCost.bFreeCost = default.TR_RockClimb_IsFree_Item_Armor;
+	ActionPointCost.iNumPoints = default.TR_RockClimb_AP_Cost_Item_Armour;
+	ActionPointCost.bFreeCost = default.TR_RockClimb_IsFree_Item_Armour;
 	ActionPointCost.bConsumeAllPoints = false;
 	Template.AbilityCosts.AddItem(ActionPointCost);
 
 	Cooldown = new class'X2AbilityCooldown';   
-	Cooldown.iNumTurns = default.TR_RockClimb_Cooldown_Item_Armor; 
+	Cooldown.iNumTurns = default.TR_RockClimb_Cooldown_Item_Armour; 
 	Template.AbilityCooldown = Cooldown;
 
-	if (default.TR_RockClimb_Item_Armor_HasCharge == true)
+	if (default.TR_RockClimb_Item_Armour_HasCharge == true)
 	{
 		Charges = new class'X2AbilityCharges';
-		Charges.InitialCharges = default.TR_RockClimb_InitialCharge_Item_Armor;
+		Charges.InitialCharges = default.TR_RockClimb_InitialCharge_Item_Armour;
 		Template.AbilityCharges = Charges;
 
 		ChargeCost = new class'X2AbilityCost_Charges';
-		ChargeCost.NumCharges = default.TR_RockClimb_NumCharge_Item_Armor;
+		ChargeCost.NumCharges = default.TR_RockClimb_NumCharge_Item_Armour;
 		Template.AbilityCosts.AddItem(ChargeCost);
 	}
 	//targeting
@@ -263,7 +262,7 @@ static function X2AbilityTemplate TR_RockClimb_Item_Armor(name TemplateName)
 	Climb.AddTraversalChange(eTraversal_WallClimb, true);
 	Climb.EffectName = 'WreckingBallTraversal';
 	Climb.DuplicateResponse = eDupe_Ignore;
-	Climb.BuildPersistentEffect(default.TR_RockClimb_NumTurns_Item_Armor, default.TR_RockClimb_IsPassive_Item_Armor, true, false, eGameRule_PlayerTurnEnd);
+	Climb.BuildPersistentEffect(default.TR_RockClimb_NumTurns_Item_Armour, default.TR_RockClimb_IsPassive_Item_Armour, true, false, eGameRule_PlayerTurnEnd);
 	Climb.TargetConditions.AddItem(AbilityCondition);
 	Template.AddTargetEffect(Climb);
 
