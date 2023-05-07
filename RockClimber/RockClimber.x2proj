@@ -9,6 +9,12 @@
     <RootNamespace>RockClimber</RootNamespace>
     <ProjectGuid>{84fb3de9-cc78-4343-b5ac-e9f50646e26e}</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup>
+    <SolutionRoot>$(MSBuildProjectDirectory)\..\</SolutionRoot>
+    <ScriptsDir>$(SolutionRoot).scripts\\</ScriptsDir>
+    <BuildCommonRoot>$(ScriptsDir)X2ModBuildCommon\</BuildCommonRoot>
+  </PropertyGroup>
+  <Import Project="$(BuildCommonRoot)XCOM2.targets" />
   <ItemGroup>
     <Folder Include="Config\" />
     <Folder Include="Config\Base\" />
@@ -18,8 +24,6 @@
     <Folder Include="ContentForCook\" />
     <Folder Include="Src\RockClimber\" />
     <Folder Include="Src\RockClimber\Classes\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="ReadMe.txt" />
     <Content Include="ModPreview.jpg" />
     <Content Include="ContentOptions.json" />
@@ -37,11 +41,10 @@
     <Content Include="TextFile1.txt">
       <SubType>Content</SubType>
     </Content>
+    <Content Include="Config\XComRockClimb.ini" />
+    <Content Include="Config\Base\XComClassData.ini" />
+    <Content Include="Src\RockClimber\Classes\X2Ability_RockClimber.uc" />
+    <Content Include="Src\RockClimber\Classes\X2Effect_WallClimbing.uc" />
+    <Content Include="Src\RockClimber\Classes\X2Item_RockClimb.uc" />
   </ItemGroup>
-  <PropertyGroup>
-    <SolutionRoot>$(MSBuildProjectDirectory)\..\</SolutionRoot>
-    <ScriptsDir>$(SolutionRoot).scripts\\</ScriptsDir>
-    <BuildCommonRoot>$(ScriptsDir)X2ModBuildCommon\</BuildCommonRoot>
-  </PropertyGroup>
-  <Import Project="$(BuildCommonRoot)XCOM2.targets" />
 </Project>
