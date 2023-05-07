@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------------------
 //  FILE:    X2Effect_WallClimbing.uc
 //  AUTHOR:  TRNEEDANAME
-//  PURPOSE: Create the Rock climb effect
+//  PURPOSE: Create the Rock climb effect. Copied from the Wrecking Ball X2Effect
 //---------------------------------------------------------------------------------------
 
 
