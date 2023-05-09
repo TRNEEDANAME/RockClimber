@@ -11,6 +11,7 @@ var config int TR_RockClimb_TradeValue, TR_RockClimb_Cost;
 
 var config bool IsRockClimbingItemEnabled, IsRockClimbingVestEnabled;
 
+var config bool RockClimbItem_AltImage_Active, RockClimbItem_AltImage_Active; 
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -36,7 +37,15 @@ static function X2DataTemplate Create_TR_RockClimb_Item()
 
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'TR_RockClimb_Item');
 
-	Template.strImage = "img:///ToAdd";
+	if (default.RockClimbItem_AltImage_Active == true)
+	{
+		Template.strImage = "img:///TR_RockClimb.WallClimb_Item_rev";
+	}
+
+	else
+	{
+		Template.strImage = "img:///TR_RockClimb.WallClimb_Item_norm";
+	}
 
 	Template.ItemCat = 'heal';
 	Template.InventorySlot = eInvSlot_Utility;
@@ -64,12 +73,22 @@ static function X2DataTemplate Create_TR_RockClimb_Item()
 
 static function X2DataTemplate Create_TR_RockClimbing_Vest()
 {
-	local  Template;
+	local X2EquipmentTemplate  Template;
 	
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'TR_RockClimbingVest');
 	Template.ItemCat = 'defense';
 	Template.InventorySlot = eInvSlot_Utility;
-	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_Armor_Harness";
+
+	if (default.RockClimbingVest_AltImage_Active == true)
+	{
+		Template.strImage = "img:///TR_RockClimb.GeckoVest_AltImage";
+	}
+
+	else
+	{
+		Template.strImage = "img://"
+	}
+
 	Template.EquipSound = "StrategyUI_Vest_Equip";
 
 	Template.Abilities.AddItem('TR_RockClimb_Item_Armour');

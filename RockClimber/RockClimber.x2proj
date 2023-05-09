@@ -36,17 +36,11 @@
     <Content Include="Config\Base\XComEditor.ini" />
     <Content Include="Config\Base\XComEngine.ini" />
     <Content Include="Config\Base\XComGame.ini" />
-    <Content Include="Config\XComTemplateCreator.ini" />
-    <Content Include="Config\XComTemplateEditor.ini" />
     <Content Include="Localization\XComGame.int" />
-    <Content Include="Localization\RockClimber.int" />
     <Content Include="Src\extra_globals.uci" />
     <Content Include="Src\RockClimber\Classes\X2DLCInfo_RockClimber.uc" />
     <Content Include="Src\RockClimber\Classes\Help.uc" />
     <Content Include="Src\RockClimber\Classes\ConfigEngine.uc" />
-    <Content Include="TextFile1.txt">
-      <SubType>Content</SubType>
-    </Content>
     <Content Include="Config\XComRockClimb.ini" />
     <Content Include="Config\Base\XComClassData.ini" />
     <Content Include="Src\RockClimber\Classes\X2Ability_RockClimber.uc" />

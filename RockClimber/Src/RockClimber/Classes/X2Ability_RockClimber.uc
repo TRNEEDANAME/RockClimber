@@ -41,14 +41,11 @@ static function X2AbilityTemplate TR_RockClimb_Ability(name TemplateName)
 	local X2AbilityCooldown             	Cooldown;
 	local X2AbilityCharges              	Charges;
 	local X2AbilityCost_Charges         	ChargeCost;
-	local X2AbilityCost_Ammo				AmmoCost;
-
-	local array<name>							SkipExclusions;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 
 	//setup
-	Template.IconImage = "img:///ToDo";
+	Template.IconImage = "img:///TR_RockClimb.RockClimb_abilityIcon";
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
 	Template.HideErrors.AddItem('AA_UnitIsNotImpaired');
 	Template.HideErrors.AddItem('AA_AbilityUnavailable');
@@ -99,7 +96,6 @@ static function X2AbilityTemplate TR_RockClimb_Ability(name TemplateName)
 	Climb.EffectName = 'WreckingBallTraversal';
 	Climb.DuplicateResponse = eDupe_Ignore;
 	Climb.BuildPersistentEffect(default.TR_RockClimb_NumTurns_Ability, default.TR_RockClimb_IsPassive_Ability, true, false, eGameRule_PlayerTurnEnd);
-	Climb.TargetConditions.AddItem(AbilityCondition);
 	Template.AddTargetEffect(Climb);
 
 	//ability visualization
@@ -123,9 +119,7 @@ static function X2AbilityTemplate TR_RockClimb_Item(name TemplateName)
 	local X2AbilityCost_ActionPoints    	ActionPointCost;
 	local X2AbilityCooldown             	Cooldown;
 	local X2AbilityCharges              	Charges;
-	local X2AbilityCost_Ammo				AmmoCost;
-
-	local array<name>							SkipExclusions;
+	local X2AbilityCost_Charges ChargeCost;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 
@@ -133,14 +127,13 @@ static function X2AbilityTemplate TR_RockClimb_Item(name TemplateName)
 	{
 		Template.AbilityCosts.AddItem(new class'X2AbilityCost_ConsumeItem');
 	}
-
-	else
+	else 
 	{
-		return;
+		default.TR_RockClimb_ItemConsume = false;
 	}
 
 	//setup
-	Template.IconImage = "img:///ToDo";
+	Template.IconImage = "img:///TR_RockClimb.RockClimb_abilityIcon";
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
 	Template.HideErrors.AddItem('AA_UnitIsNotImpaired');
 	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
@@ -188,7 +181,6 @@ static function X2AbilityTemplate TR_RockClimb_Item(name TemplateName)
 	Climb.EffectName = 'WreckingBallTraversal';
 	Climb.DuplicateResponse = eDupe_Ignore;
 	Climb.BuildPersistentEffect(default.TR_RockClimb_NumTurns_Item, default.TR_RockClimb_IsPassive_Item, true, false, eGameRule_PlayerTurnEnd);
-	Climb.TargetConditions.AddItem(AbilityCondition);
 	Template.AddTargetEffect(Climb);
 
 
@@ -209,14 +201,12 @@ static function X2AbilityTemplate TR_RockClimb_Item_Armour(name TemplateName)
 	local X2AbilityCost_ActionPoints    	ActionPointCost;
 	local X2AbilityCooldown             	Cooldown;
 	local X2AbilityCharges              	Charges;
-	local X2AbilityCost_Ammo				AmmoCost;
-
-	local array<name>							SkipExclusions;
+	local X2AbilityCost_Charges    ChargeCost;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
 
 	//setup
-	Template.IconImage = "img:///ToDo";
+	Template.IconImage = "img:///TR_RockClimb.RockClimb_abilityIcon";
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
 	Template.HideErrors.AddItem('AA_UnitIsNotImpaired');
 	Template.AbilityConfirmSound = "TacticalUI_ActivateAbility";
@@ -263,7 +253,6 @@ static function X2AbilityTemplate TR_RockClimb_Item_Armour(name TemplateName)
 	Climb.EffectName = 'WreckingBallTraversal';
 	Climb.DuplicateResponse = eDupe_Ignore;
 	Climb.BuildPersistentEffect(default.TR_RockClimb_NumTurns_Item_Armour, default.TR_RockClimb_IsPassive_Item_Armour, true, false, eGameRule_PlayerTurnEnd);
-	Climb.TargetConditions.AddItem(AbilityCondition);
 	Template.AddTargetEffect(Climb);
 
 

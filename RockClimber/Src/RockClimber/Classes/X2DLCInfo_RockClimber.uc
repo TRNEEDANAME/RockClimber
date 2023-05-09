@@ -22,14 +22,12 @@ static event InstallNewCampaign(XComGameState StartState)
 static event OnPostTemplatesCreated()
 {
 	local X2ItemTemplateManager			ItemMgr;
-	local X2CharacterTemplateManager    CharacterMgr;
 	
     local X2EquipmentTemplate ItemTemplate;
     local X2ArmorTemplate     ArmoursTemplate;
     local name Object;
 
     ItemMgr			= class'X2ItemTemplateManager'.static.GetItemTemplateManager();
-	CharacterMgr	= class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
 
     foreach default.RockClimb_Items (Object)
     {
@@ -41,7 +39,7 @@ static event OnPostTemplatesCreated()
     }
     foreach default.RockClimb_Armours (Object)
     {
-        ArmoursTemplate = X2ArmourTemplate(ItemMgr.FindItemTemplate(Object));
+        ArmoursTemplate = X2ArmorTemplate(ItemMgr.FindItemTemplate(Object));
         if (ArmoursTemplate != none)
         {
             ArmoursTemplate.Abilities.AddItem('TR_RockClimb_Item_Armour');
