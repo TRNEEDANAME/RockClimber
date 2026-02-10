@@ -4,7 +4,6 @@
 //  PURPOSE: Create the Rock climb effect. Copied from the Wrecking Ball X2Effect
 //---------------------------------------------------------------------------------------
 
-
 class X2Effect_WallClimbing extends X2Effect_PersistentTraversalChange;
 
 var name WallClimbingEffectName;
@@ -56,5 +55,5 @@ function EventListenerReturn WallClimbingAbilityActivated(Object EventData, Obje
 DefaultProperties
 {
 	DuplicateResponse = eDupe_Ignore;
-	WallClimbingEffectName = WallClimbing;
+	WallClimbingEffectName = 'WallClimbing';
 }

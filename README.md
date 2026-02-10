@@ -21,7 +21,7 @@ This will be the most up to date project folder from the mod, even before it's o
 ## FAQ
 
 ### Why not post the "ready to use" version of the mod ?
-It's easier for me, but you can change the config without compiling the mod again.
+It's easier for me, but you can change the code without compiling the mod again.
 
 ### Can I do pull requests ?
 **YES**, you can, you can open issues, pull request, discussions...

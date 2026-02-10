@@ -6,8 +6,10 @@
 
 class X2DLCInfo_RockClimber extends X2DownloadableContentInfo;
 
-var config array<name> RockClimb_Items, RockClimb_Armours;
-
+var config array<name> RockClimb_Items;
+var config array<name> RockClimb_Armours;
+var config array<name> RockClimber_CharacterGroups;
+var config array<name> RockClimber_Classes;
 
 static event OnLoadedSavedGame()
 {
@@ -19,32 +21,55 @@ static event InstallNewCampaign(XComGameState StartState)
 
 }
 
+// TODO: Add abilities to classes & char groups
 static event OnPostTemplatesCreated()
 {
-	local X2ItemTemplateManager			ItemMgr;
-	
-    local X2EquipmentTemplate ItemTemplate;
-    local X2ArmorTemplate     ArmoursTemplate;
-    local name Object;
+	local X2ItemTemplateManager             ItemMgr;
+	local X2EquipmentTemplate               ItemTemplate;
+	local X2ArmorTemplate                   ArmoursTemplate;
+	local name                              Object;
 
-    ItemMgr			= class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	local X2CharacterTemplateManager        CharMgr;
+	local X2CharacterTemplate               CharTemplate;
 
-    foreach default.RockClimb_Items (Object)
-    {
-        ItemTemplate = X2EquipmentTemplate(ItemMgr.FindItemTemplate(Object));
-        if (ItemTemplate != none)
-        {
-            ItemTemplate.Abilities.AddItem('TR_RockClimb_Item');
-        }
-    }
-    foreach default.RockClimb_Armours (Object)
-    {
-        ArmoursTemplate = X2ArmorTemplate(ItemMgr.FindItemTemplate(Object));
-        if (ArmoursTemplate != none)
-        {
-            ArmoursTemplate.Abilities.AddItem('TR_RockClimb_Item_Armour');
-        }
-    }
+	local X2SoldierClassTemplateManager     ClassMgr;
+
+	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
+	CharMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
+	ClassMgr = class'X2SoldierClassTemplateManager'.static.GetSoldierClassTemplateManager();
+
+	// Items
+	foreach default.RockClimb_Items (Object)
+	{
+		ItemTemplate = X2EquipmentTemplate(ItemMgr.FindItemTemplate(Object));
+		if (ItemTemplate != none)
+		{
+			ItemTemplate.Abilities.AddItem('TR_RockClimb_Item');
+		}
+	}
+
+	// Armours
+	foreach default.RockClimb_Armours (Object)
+	{
+		ArmoursTemplate = X2ArmorTemplate(ItemMgr.FindItemTemplate(Object));
+		if (ArmoursTemplate != none)
+		{
+			ArmoursTemplate.Abilities.AddItem('TR_RockClimb_Item_Armour');
+		}
+	}
+
+	// Character Groups
+	foreach CharMgr.IterateTemplates(CharTemplate)
+	{
+		if (CharTemplate == none)
+			continue;
+
+		if (default.RockClimber_CharacterGroups.Find(CharTemplate.CharacterGroupName) != INDEX_NONE)
+		{
+			// Add the passive/ability to all members of that group
+			CharTemplate.Abilities.AddItem('TR_RockClimb_Ability');
+		}
+	}
 }
 
 static function bool AbilityTagExpandHandler(string InString, out string OutString)
