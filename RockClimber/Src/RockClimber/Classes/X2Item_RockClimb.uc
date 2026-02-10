@@ -14,7 +14,7 @@ var config int TR_RockClimb_VestTradeValue, TR_RockClimb_VestCost;
 
 var config bool IsRockClimbingItemEnabled, IsRockClimbingVestEnabled;
 
-var config bool RockClimbItem_RevImage_Active;
+var config bool RockClimbItem_RevImage_Active, RockClimbingVest_RevImage_Active;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -89,7 +89,7 @@ static function X2DataTemplate Create_TR_RockClimbing_Vest()
 
 	else
 	{
-		Template.strImage = "img:///TR_RockClimb.GeckoVest_Norm"
+		Template.strImage = "img:///TR_RockClimb.GeckoVest_Norm";
 	}
 
 	Template.EquipSound = "StrategyUI_Vest_Equip";

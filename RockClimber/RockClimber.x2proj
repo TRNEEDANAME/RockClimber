@@ -52,5 +52,6 @@
     <Content Include="Config\Compatibility\Proving Ground Overhaul\XComPGOverhaulExperimentalItems.ini" />
     <Content Include="Config\Compatibility\Proving Ground Overhaul\XComStrategyTuning.ini" />
     <Content Include="Src\WallClimbOverride\Classes\X2Action_MoveClimbWall_Override.uc" />
+    <Content Include="Content\TR_RockClimb.upk" />
   </ItemGroup>
 </Project>

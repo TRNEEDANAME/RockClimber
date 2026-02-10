@@ -10,18 +10,18 @@ class X2Ability_RockClimber extends X2Ability config (RockClimb);
 
 var config int TR_RockClimb_AP_Cost_Ability;
 var config int TR_RockClimb_Cooldown_Ability;
-var config int TR_RockClimb_InitialCharge_Ability
-var config int TR_RockClimb_NumCharge_Ability
+var config int TR_RockClimb_InitialCharge_Ability;
+var config int TR_RockClimb_NumCharge_Ability;
 var config int TR_RockClimb_NumTurns_Ability;
 
-var config bool TR_RockClimb_IsFree_Ability
+var config bool TR_RockClimb_IsFree_Ability;
 var config bool TR_RockClimb_IsCrossClass;
 var config bool TR_RockClimbAbility_HasCharge;
 var config bool TR_RockClimb_IsPassive_Ability;
 
 // ITEM
 
-var config int TR_RockClimb_AP_Cost_Item,
+var config int TR_RockClimb_AP_Cost_Item;
 var config int TR_RockClimb_Cooldown_Item;
 var config int TR_RockClimb_InitialCharge_Item;
 var config int TR_RockClimb_NumCharge_Item;

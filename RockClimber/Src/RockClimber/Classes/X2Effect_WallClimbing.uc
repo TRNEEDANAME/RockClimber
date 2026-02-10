@@ -55,5 +55,5 @@ function EventListenerReturn WallClimbingAbilityActivated(Object EventData, Obje
 DefaultProperties
 {
 	DuplicateResponse = eDupe_Ignore;
-	WallClimbingEffectName = 'WallClimbing';
+	WallClimbingEffectName = 'TR_WallClimbing';
 }
