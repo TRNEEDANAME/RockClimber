@@ -6,26 +6,27 @@
 
 class X2Item_RockClimb extends X2Item_DefaultUtilityItems config (RockClimb);
 
-var config bool TR_RockClimb_ItemCanBeBuild, TR_RockClimb_ItemIsStratingItem, TR_RockClimb_ItemIsInfinite;
-var config bool TR_RockClimb_VestCanBeBuild, TR_RockClimb_VestIsStratingItem, TR_RockClimb_VestIsInfinite;
+var config bool TR_RockClimb_CanBeBuild_Item, TR_RockClimb_IsStratingItem_Item, TR_RockClimb_IsInfinite_Item;
+var config bool TR_RockClimb_CanBeBuild_Vest, TR_RockClimb_IsStratingItem_Vest, TR_RockClimb_IsInfinite_Vest;
 
-var config int TR_RockClimb_ItemTradeValue, TR_RockClimb_ItemCost;
-var config int TR_RockClimb_VestTradeValue, TR_RockClimb_VestCost;
+var config int TR_RockClimb_TradeValue_Item, TR_RockClimb_Cost_Item;
+var config int TR_RockClimb_TradeValue_Vest;
 
-var config bool IsRockClimbingItemEnabled, IsRockClimbingVestEnabled;
+var config bool IsRockClimbingEnabled_Item, IsRockClimbingEnabled_Vest;
+var config bool RockClimb_RevImage_Item, RockClimbing_RevImage_Vest;
 
-var config bool RockClimbItem_RevImage_Active, RockClimbingVest_RevImage_Active;
+var config int TR_RockClimbing_HealthBonus_Vest, TR_RockClimbing_MobilityBonus_Vest;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Items;
 
-	if(default.IsRockClimbingItemEnabled)
+	if(default.IsRockClimbingEnabled_Item)
 	{
 		Items.AddItem(Create_TR_RockClimb_Item());
 	}
 
-	if (default.IsRockClimbingVestEnabled)
+	if (default.IsRockClimbingEnabled_Vest)
 	{
 		Items.AddItem(Create_TR_RockClimbing_Vest());
 	}
@@ -40,7 +41,7 @@ static function X2DataTemplate Create_TR_RockClimb_Item()
 
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'TR_RockClimb_Item');
 
-	if (default.RockClimbItem_RevImage_Active)
+	if (default.RockClimb_RevImage_Item)
 	{
 		Template.strImage = "img:///TR_RockClimb.WallClimb_Item_rev";
 	}
@@ -56,20 +57,20 @@ static function X2DataTemplate Create_TR_RockClimb_Item()
 
 	Template.Abilities.AddItem('TR_RockClimb_Item');
 
-	Template.CanBeBuilt = default.TR_RockClimb_ItemCanBeBuild;
-	Template.StartingItem = default.TR_RockClimb_ItemIsStratingItem;
-	Template.bInfiniteItem = default.TR_RockClimb_ItemIsInfinite;
+	Template.CanBeBuilt = default.TR_RockClimb_CanBeBuild_Item;
+	Template.StartingItem = default.TR_RockClimb_IsStratingItem_Item;
+	Template.bInfiniteItem = default.TR_RockClimb_IsInfinite_Item;
 
-	Template.TradingPostValue = default.TR_RockClimb_ItemTradeValue;
+    if (!default.TR_RockClimb_IsInfinite_Item)
+    {
+    	Template.TradingPostValue = default.TR_RockClimb_TradeValue_Item;
+      	Resources.ItemTemplateName = 'Supplies';
+        Resources.Quantity = default.TR_RockClimb_Cost_Item;
+	    Template.Cost.ResourceCosts.AddItem(Resources);
+        Template.bShouldCreateDifficultyVariants = true;
+    }
 
 	Template.Tier = 0;
-
-	// Cost
-	Resources.ItemTemplateName = 'Supplies';
-	Resources.Quantity = default.TR_RockClimb_ItemCost;
-	Template.Cost.ResourceCosts.AddItem(Resources);
-
-	Template.bShouldCreateDifficultyVariants = true;
 
 	return Template;
 }
@@ -82,10 +83,10 @@ static function X2DataTemplate Create_TR_RockClimbing_Vest()
 	Template.ItemCat = 'defense';
 	Template.InventorySlot = eInvSlot_Utility;
 
-	if (default.RockClimbingVest_RevImage_Active)
+	if (default.ockClimbing_RevImage_Vest)
 	{
 		Template.strImage = "img:///TR_RockClimb.GeckoVest_rev";
-	}'TR_RockClimb_AbilityPassive
+	}
 
 	else
 	{
@@ -97,18 +98,22 @@ static function X2DataTemplate Create_TR_RockClimbing_Vest()
 	Template.Abilities.AddItem('TR_RockClimb_Item_Armour');
 	Template.Abilities.AddItem('TR_RockClimb_Item_Armour_StatBonus');
 
-	Template.CanBeBuilt = default.TR_RockClimb_VestCanBeBuild;
-    Template.StartingItem = default.TR_RockClimb_VestIsStratingItem;
-	Template.bInfiniteItem = default.TR_RockClimb_VestIsInfinite;
+	Template.CanBeBuilt = default.TR_RockClimb_CanBeBuild_Vest;
+    Template.StartingItem = default.TR_RockClimb_IsStratingItem_Vest;
+	Template.bInfiniteItem = default.TR_RockClimb_IsInfinite_Vest;
 
-	Template.TradingPostValue = default.TR_RockClimb_VestTradeValue;
+    if (!default.TR_RockClimb_IsInfinite_Vest)
+    {
+        Template.TradingPostValue = default.TR_RockClimb_TradeValue_Vest;
+
+    }
 	Template.PointsToComplete = 0;
 	Template.Tier = 2;
 
 	Template.RewardDecks.AddItem('ExperimentalArmorRewards');
 
-	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, class'X2Ability_RockClimber'.default.RockClimbingVest_HealthBonus);
-	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, class'X2Ability_RockClimber'.default.RockClimbingVest_MobilityBonus);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.HealthLabel, eStat_HP, default.TR_RockClimbing_HealthBonus_Vest);
+	Template.SetUIStatMarkup(class'XLocalizedData'.default.MobilityLabel, eStat_Mobility, default.TR_RockClimbing_MobilityBonus_Vest);
 	
 	return Template;
 }

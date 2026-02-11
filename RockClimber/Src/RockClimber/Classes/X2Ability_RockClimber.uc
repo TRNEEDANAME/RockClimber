@@ -11,7 +11,6 @@ class X2Ability_RockClimber extends X2Ability config (RockClimb);
 var config int TR_RockClimb_AP_Cost_Ability;
 var config int TR_RockClimb_Cooldown_Ability;
 var config int TR_RockClimb_InitialCharge_Ability;
-var config int TR_RockClimb_NumCharge_Ability;
 var config int TR_RockClimb_NumTurns_Ability;
 
 var config bool TR_RockClimb_IsFree_Ability;
@@ -24,7 +23,6 @@ var config bool TR_RockClimb_IsPassive_Ability;
 var config int TR_RockClimb_AP_Cost_Item;
 var config int TR_RockClimb_Cooldown_Item;
 var config int TR_RockClimb_InitialCharge_Item;
-var config int TR_RockClimb_NumCharge_Item;
 var config int TR_RockClimb_NumTurns_Item;
 
 var config bool TR_RockClimb_IsFree_Item;
@@ -37,25 +35,21 @@ var config bool TR_RockClimb_HasCharge_Item;
 var config int TR_RockClimb_AP_Cost_Item_Armour;
 var config int  TR_RockClimb_Cooldown_Item_Armour;
 var config int TR_RockClimb_InitialCharge_Item_Armour;
-var config int TR_RockClimb_NumCharge_Item_Armour;
 var config int TR_RockClimb_NumTurns_Item_Armour;
 
 var config bool TR_RockClimb_IsFree_Item_Armour;
 var config bool TR_RockClimb_IsPassive_Item_Armour;
 var config bool TR_RockClimb_HasCharge_Item_Armour;
-
-var config int RockClimbingVest_HealthBonus, RockClimbingVest_MobilityBonus;
 
 // VEST
-var config int TR_RockClimb_AP_Cost_Item_Armour;
-var config int  TR_RockClimb_Cooldown_Item_Armour;
-var config int TR_RockClimb_InitialCharge_Item_Armour;
-var config int TR_RockClimb_NumCharge_Item_Armour;
-var config int TR_RockClimb_NumTurns_Item_Armour;
+var config int TR_RockClimb_AP_Cost_Item_Vest;
+var config int  TR_RockClimb_Cooldown_Item_Vest;
+var config int TR_RockClimb_InitialCharge_Item_Vest;
+var config int TR_RockClimb_NumTurns_Item_Vest;
 
-var config bool TR_RockClimb_IsFree_Item_Armour;
-var config bool TR_RockClimb_IsPassive_Item_Armour;
-var config bool TR_RockClimb_HasCharge_Item_Armour;
+var config bool TR_RockClimb_IsFree_Item_Vest;
+var config bool TR_RockClimb_IsPassive_Item_Vest;
+var config bool TR_RockClimb_HasCharge_Item_Vest;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -121,7 +115,7 @@ static function X2AbilityTemplate TR_RockClimb_Ability()
 		Template.AbilityCharges = Charges;
 
 		ChargeCost = new class'X2AbilityCost_Charges';
-		ChargeCost.NumCharges = default.TR_RockClimb_NumCharge_Ability;
+		ChargeCost.NumCharges = 1;
 		Template.AbilityCosts.AddItem(ChargeCost);
 	}
 
@@ -249,7 +243,7 @@ static function X2AbilityTemplate TR_RockClimb_Item()
 		Template.AbilityCharges = Charges;
 	
 		ChargeCost = new class'X2AbilityCost_Charges';
-		ChargeCost.NumCharges = default.TR_RockClimb_NumCharge_Item;
+		ChargeCost.NumCharges = 1;
 		Template.AbilityCosts.AddItem(ChargeCost);
 	}
 
@@ -318,7 +312,7 @@ static function X2AbilityTemplate TR_RockClimb_Item_Armour()
 		Template.AbilityCharges = Charges;
 
 		ChargeCost = new class'X2AbilityCost_Charges';
-		ChargeCost.NumCharges = default.TR_RockClimb_NumCharge_Item_Armour;
+		ChargeCost.NumCharges = 1;
 		Template.AbilityCosts.AddItem(ChargeCost);
 	}
 	//targeting
@@ -391,7 +385,7 @@ static function X2AbilityTemplate TR_RockClimb_Item_Vest()
 		Template.AbilityCharges = Charges;
 	
 		ChargeCost = new class'X2AbilityCost_Charges';
-		ChargeCost.NumCharges = default.TR_RockClimb_NumCharge_Item_Vest;
+		ChargeCost.NumCharges = 1;
 		Template.AbilityCosts.AddItem(ChargeCost);
 	}
 
@@ -409,7 +403,6 @@ static function X2AbilityTemplate TR_RockClimb_Item_Vest()
 	Climb.DuplicateResponse = eDupe_Ignore;
 	Climb.BuildPersistentEffect(default.TR_RockClimb_NumTurns_Item_Vest, default.TR_RockClimb_IsPassive_Item_Vest, true, false, eGameRule_PlayerTurnEnd);
 	Template.AddTargetEffect(Climb);
-
 
 	//ability visualization
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
