@@ -72,7 +72,7 @@ static event OnPostTemplatesCreated()
 
 		if (default.RockClimber_CharacterGroups.Find(CharTemplate.CharacterGroupName) != INDEX_NONE)
 		{
-			CharTemplate.Abilities.AddItem('TR_RockClimb_AbilityPassive');
+			CharTemplate.Abilities.AddItem('TR_RockClimb_Ability_Passive');
 		}
 	}
 
