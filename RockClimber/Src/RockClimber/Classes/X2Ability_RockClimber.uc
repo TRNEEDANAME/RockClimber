@@ -50,9 +50,10 @@ static function array<X2DataTemplate> CreateTemplates()
 {
 	local array<X2DataTemplate> Templates;
 	
-	Templates.AddItem(TR_RockClimb_Ability('TR_RockClimb_Ability'));
-	Templates.AddItem(TR_RockClimb_Item('TR_RockClimb_Item'));
-	Templates.AddItem(TR_RockClimb_Item('TR_RockClimb_Item_Armour'));
+	Templates.AddItem(TR_RockClimb_Ability());
+    Templates.AddItem(TR_RockClimb_Ability());
+	Templates.AddItem(TR_RockClimb_Item());
+	Templates.AddItem(TR_RockClimb_Item_Armour());
 
 	return Templates;
 }
@@ -61,7 +62,7 @@ static function array<X2DataTemplate> CreateTemplates()
 // ============================ ABILITIES ============================
 // ===================================================================
 
-static function X2AbilityTemplate TR_RockClimb_Ability(name TemplateName)
+static function X2AbilityTemplate TR_RockClimb_Ability()
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_PersistentTraversalChange    Climb;
@@ -70,7 +71,7 @@ static function X2AbilityTemplate TR_RockClimb_Ability(name TemplateName)
 	local X2AbilityCharges              	Charges;
 	local X2AbilityCost_Charges         	ChargeCost;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TR_RockClimb_Ability');
 
 	//setup
 	Template.IconImage = "img:///TR_RockClimb.RockClimb_abilityIcon";
@@ -129,18 +130,69 @@ static function X2AbilityTemplate TR_RockClimb_Ability(name TemplateName)
 	//ability visualization
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-	Template.bShowActivation = true;
+	
 	Template.bStationaryWeapon = true;
 
 	return Template;
 }
+
+static function X2AbilityTemplate TR_RockClimb_AbilityPassive()
+{
+	local X2AbilityTemplate						Template;
+	local X2Effect_PersistentTraversalChange    Climb;
+	local X2AbilityCost_ActionPoints    	ActionPointCost;
+	local X2AbilityCooldown             	Cooldown;
+	local X2AbilityCharges              	Charges;
+	local X2AbilityCost_Charges         	ChargeCost;
+
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TR_RockClimb_AbilityPassive');
+
+	//setup
+	Template.IconImage = "img:///TR_RockClimb.RockClimb_abilityIcon";
+	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
+	Template.HideErrors.AddItem('AA_UnitIsNotImpaired');
+	Template.HideErrors.AddItem('AA_AbilityUnavailable');
+	Template.AbilitySourceName = 'eAbilitySource_Commander';
+	Template.Hostility = eHostility_Neutral;
+	Template.ShotHUDPriority = 9999;
+	
+	Template.bDisplayInUITacticalText = true;
+	Template.bDontDisplayInAbilitySummary = true;
+
+	Template.bDisplayInUITooltip = true;
+
+	Template.bUniqueSource = true;
+
+	//targeting
+	Template.AbilityToHitCalc = default.DeadEye;
+	Template.AbilityTargetStyle = default.SelfTarget;
+	Template.AbilityTriggers.AddItem(default.PlayerInputTrigger);
+
+	//Conditional
+	Template.AbilityShooterConditions.AddItem(default.LivingShooterProperty);
+
+	Climb = new class'X2Effect_PersistentTraversalChange';
+	Climb.AddTraversalChange(eTraversal_WallClimb, true);
+	Climb.EffectName = 'WreckingBallTraversal';
+	Climb.DuplicateResponse = eDupe_Ignore;
+	Climb.BuildPersistentEffect(5, true, true, false, eGameRule_PlayerTurnEnd);
+	Template.AddTargetEffect(Climb);
+
+	//ability visualization
+	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
+	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
+
+	return Template;
+}
+
+
 
 // ===================================================================
 // ============================== ITEMS ==============================
 // ===================================================================
 
 
-static function X2AbilityTemplate TR_RockClimb_Item(name TemplateName)
+static function X2AbilityTemplate TR_RockClimb_Item()
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_PersistentTraversalChange    Climb;
@@ -149,7 +201,7 @@ static function X2AbilityTemplate TR_RockClimb_Item(name TemplateName)
 	local X2AbilityCharges              	Charges;
 	local X2AbilityCost_Charges ChargeCost;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TR_RockClimb_Item');
 
 	if (default.TR_RockClimb_ItemConsume)
 	{
@@ -211,14 +263,14 @@ static function X2AbilityTemplate TR_RockClimb_Item(name TemplateName)
 	//ability visualization
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-	Template.bShowActivation = true;
+	
 	Template.bStationaryWeapon = true;
 
 	return Template;
 }
 
 
-static function X2AbilityTemplate TR_RockClimb_Item_Armour(name TemplateName)
+static function X2AbilityTemplate TR_RockClimb_Item_Armour()
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_PersistentTraversalChange    Climb;
@@ -227,7 +279,7 @@ static function X2AbilityTemplate TR_RockClimb_Item_Armour(name TemplateName)
 	local X2AbilityCharges              	Charges;
 	local X2AbilityCost_Charges    ChargeCost;
 
-	`CREATE_X2ABILITY_TEMPLATE(Template, TemplateName);
+	`CREATE_X2ABILITY_TEMPLATE(Template, 'TR_RockClimb_Item_Armour');
 
 	Template.IconImage = "img:///TR_RockClimb.RockClimb_abilityIcon";
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
@@ -282,8 +334,6 @@ static function X2AbilityTemplate TR_RockClimb_Item_Armour(name TemplateName)
 	//ability visualization
 	Template.BuildNewGameStateFn = TypicalAbility_BuildGameState;
 	Template.BuildVisualizationFn = TypicalAbility_BuildVisualization;
-	Template.bShowActivation = true;
-	Template.bStationaryWeapon = true;
 
 	return Template;
 }

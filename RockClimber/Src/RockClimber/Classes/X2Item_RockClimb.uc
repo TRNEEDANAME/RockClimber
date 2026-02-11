@@ -69,7 +69,7 @@ static function X2DataTemplate Create_TR_RockClimb_Item()
 	Resources.Quantity = default.TR_RockClimb_ItemCost;
 	Template.Cost.ResourceCosts.AddItem(Resources);
 
-	Template.bShouldCreateDifficultyVariants = false;
+	Template.bShouldCreateDifficultyVariants = true;
 
 	return Template;
 }
@@ -78,14 +78,14 @@ static function X2DataTemplate Create_TR_RockClimbing_Vest()
 {
 	local X2EquipmentTemplate  Template;
 	
-	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'TR_RockClimbingVest');
+	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'TR_RockClimbing_Vest');
 	Template.ItemCat = 'defense';
 	Template.InventorySlot = eInvSlot_Utility;
 
 	if (default.RockClimbingVest_RevImage_Active)
 	{
 		Template.strImage = "img:///TR_RockClimb.GeckoVest_rev";
-	}
+	}'TR_RockClimb_AbilityPassive
 
 	else
 	{

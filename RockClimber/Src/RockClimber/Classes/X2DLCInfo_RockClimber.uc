@@ -9,6 +9,7 @@ class X2DLCInfo_RockClimber extends X2DownloadableContentInfo;
 var config array<name> RockClimb_Items;
 var config array<name> RockClimb_Armours;
 var config array<name> RockClimber_CharacterGroups;
+var config array<name> RockClimber_UnitNames;
 var config array<name> RockClimber_Classes;
 
 var localized string RockClimbAbility_HasCharge, RockClimbAbility_NoCharge;
@@ -31,10 +32,9 @@ static event OnPostTemplatesCreated()
 	local X2EquipmentTemplate               ItemTemplate;
 	local X2ArmorTemplate                   ArmoursTemplate;
 	local name                              Object;
-
 	local X2CharacterTemplateManager        CharMgr;
 	local array<name>                       TemplateNames;
-	local name                              TemplateName;
+	local name                              TemplateName, RockClimber_UnitName;
 	local X2CharacterTemplate               CharTemplate;
 	local X2SoldierClassTemplate			SoldierClassTemplate;
 	local X2SoldierClassTemplateManager     ClassMgr;
@@ -64,8 +64,7 @@ static event OnPostTemplatesCreated()
 	}
 
 	// Character Groups
-	CharMgr.GetTemplateNames(TemplateNames);
-	foreach TemplateNames(TemplateName)
+	foreach RockClimber_CharacterGroups(TemplateName)
 	{
 		CharTemplate = CharMgr.FindCharacterTemplate(TemplateName);
 		if (CharTemplate == none)
@@ -73,15 +72,27 @@ static event OnPostTemplatesCreated()
 
 		if (default.RockClimber_CharacterGroups.Find(CharTemplate.CharacterGroupName) != INDEX_NONE)
 		{
+			CharTemplate.Abilities.AddItem('TR_RockClimb_AbilityPassive');
+		}
+	}
+
+    // Units
+	foreach RockClimber_UnitName(TemplateName)
+	{
+		CharTemplate = CharMgr.FindCharacterTemplate(TemplateName);
+		if (CharTemplate == none)
+			continue;
+
+		if (default.RockClimber_UnitName.Find(CharTemplate.CharacterGroupName) != INDEX_NONE)
+		{
 			CharTemplate.Abilities.AddItem('TR_RockClimb_Ability');
 		}
 	}
 
 	// Soldier Classes
-	ClassMgr.GetTemplateNames(TemplateNames);
-	foreach TemplateNames(TemplateName)
+	foreach default.RockClimber_Classes(ClassName)
 	{
-		SoldierClassTemplate = ClassMgr.FindSoldierClassTemplate(TemplateName);
+		SoldierClassTemplate = ClassMgr.FindSoldierClassTemplate(ClassName);
 		if (SoldierClassTemplate == none)
 			continue;
 
