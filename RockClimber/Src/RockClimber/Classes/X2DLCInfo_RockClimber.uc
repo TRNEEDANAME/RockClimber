@@ -33,17 +33,35 @@ static event OnPostTemplatesCreated()
 	local X2ArmorTemplate                   ArmoursTemplate;
 	local name                              Object;
 	local X2CharacterTemplateManager        CharMgr;
-	local array<name>                       TemplateNames;
-	local name                              TemplateName, RockClimber_UnitName;
+	local name                              TemplateName, ClassName;
 	local X2CharacterTemplate               CharTemplate;
 	local X2SoldierClassTemplate			SoldierClassTemplate;
 	local X2SoldierClassTemplateManager     ClassMgr;
+	local SoldierClassAbilitySlot           NewAbilitySlot;
+	local int                               SlotIndex, idx, Index;
+	local array<X2DataTemplate>				DifficultyVariants;
 
 	ItemMgr = class'X2ItemTemplateManager'.static.GetItemTemplateManager();
 	CharMgr = class'X2CharacterTemplateManager'.static.GetCharacterTemplateManager();
 	ClassMgr = class'X2SoldierClassTemplateManager'.static.GetSoldierClassTemplateManager();
 
 	// Items
+
+	ClassMgr.FindDataTemplateAllDifficulties(TemplateName, DifficultyVariants);
+	for (idx = 0; idx < DifficultyVariants.Length; idx++)
+	{
+		ItemTemplate = X2ItemTemplate(DifficultyVariants[idx]);
+		if (ItemTemplate != none)
+		{
+			ItemTemplate = ClassMgr.FindItemTemplate(TemplateName);
+			foreach default.RockClimb_Items (Object)
+			{
+				ItemTemplate.Abilities.AddItem('TR_RockClimb_Item');
+			}
+		}
+	}
+
+
 	foreach default.RockClimb_Items (Object)
 	{
 		ItemTemplate = X2EquipmentTemplate(ItemMgr.FindItemTemplate(Object));
@@ -64,41 +82,51 @@ static event OnPostTemplatesCreated()
 	}
 
 	// Character Groups
-	foreach RockClimber_CharacterGroups(TemplateName)
+	foreach default.RockClimber_CharacterGroups(TemplateName)
 	{
 		CharTemplate = CharMgr.FindCharacterTemplate(TemplateName);
 		if (CharTemplate == none)
 			continue;
 
 		if (default.RockClimber_CharacterGroups.Find(CharTemplate.CharacterGroupName) != INDEX_NONE)
-		{
+		{²
 			CharTemplate.Abilities.AddItem('TR_RockClimb_Ability_Passive');
 		}
 	}
 
     // Units
-	foreach RockClimber_UnitName(TemplateName)
+	foreach default.RockClimber_UnitNames(TemplateName)
 	{
 		CharTemplate = CharMgr.FindCharacterTemplate(TemplateName);
 		if (CharTemplate == none)
 			continue;
 
-		if (default.RockClimber_UnitName.Find(CharTemplate.CharacterGroupName) != INDEX_NONE)
+		if (default.RockClimber_UnitNames.Find(CharTemplate.CharacterGroupName) != INDEX_NONE)
 		{
-			CharTemplate.Abilities.AddItem('TR_RockClimb_Ability');
+			CharTemplate.Abilities.AddItem('TR_RockClimb_Ability_Passive');
 		}
 	}
 
 	// Soldier Classes
-	foreach default.RockClimber_Classes(ClassName)
+	ClassMgr.FindDataTemplateAllDifficulties(ClassName, DifficultyVariants);
+	for (idx = 0; idx < DifficultyVariants.Length; idx++)
 	{
-		SoldierClassTemplate = ClassMgr.FindSoldierClassTemplate(ClassName);
-		if (SoldierClassTemplate == none)
-			continue;
-
-		if (default.RockClimber_Classes.Find(SoldierClassTemplate.DataName) != INDEX_NONE)
+		SoldierClassTemplate = X2SoldierClassTemplate(DifficultyVariants[idx]);
+		if (SoldierClassTemplate != none)
 		{
-			SoldierClassTemplate.Abilities.AddItem('TR_RockClimb_Ability');
+			SoldierClassTemplate = ClassMgr.FindSoldierClassTemplate(ClassName);
+			for (SlotIndex = 0; SlotIndex < SoldierClassTemplate.SoldierRanks[1].AbilitySlots.Length; ++SlotIndex)
+			{
+				if (SoldierClassTemplate.SoldierRanks[1].AbilitySlots[SlotIndex].AbilityType.AbilityName == 'TR_RockClimb_Ability')
+				{
+					break;
+				}
+			}
+			if (SlotIndex == SoldierClassTemplate.SoldierRanks[1].AbilitySlots.Length)
+			{
+				NewAbilitySlot.AbilityType.AbilityName = 'TR_RockClimb_Ability';
+				SoldierClassTemplate.SoldierRanks[1].AbilitySlots.AddItem(NewAbilitySlot);
+			}
 		}
 	}
 }
@@ -112,7 +140,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 	switch (TagText)
 	{
 		case 'RockClimbAbility_HasCharge': 
-			if (class'X2Ability_RockClimber'.default.TR_RockClimbAbility_HasCharge)
+			if (class'X2Ability_RockClimber'.default.TR_RockClimb_HasCharge_Ability)
 			{
 				OutString = default.RockClimbAbility_HasCharge;
 			}
@@ -123,7 +151,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 			
 		case 'RockClimb_NumCharge_Ability':	
-			OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_NumCharge_Ability);	
+			OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_InitialCharge_Ability);	
 			return true;
 			
 		case 'TR_RockClimb_Cooldown_Ability':	
@@ -139,7 +167,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 
 		case 'RockClimbItem_HasCharge': 
-			if (class'X2Ability_RockClimber'.default.TR_RockClimbItem_HasCharge)
+			if (class'X2Ability_RockClimber'.default.TR_RockClimb_HasCharge_Item)
 			{
 				OutString = default.RockClimbItem_HasCharge;
 			}
@@ -150,7 +178,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 			
 		case 'RockClimb_NumCharge_Item':	
-			OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_NumCharge_Item);	
+			OutString = string(class'X2Ability_RockClimber'.default.TR_RockClimb_InitialCharge_Item);	
 			return true;
 			
 		case 'TR_RockClimb_Cooldown_Item':	
@@ -166,7 +194,7 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 
 		case 'RockClimb_Item_Armour_HasCharge': 
-			if (class'X2Ability_RockClimber'.default.TR_RockClimb_Item_Armour_HasCharge)
+			if (class'X2Ability_RockClimber'.default.TR_RockClimb_HasCharge_Item_Armour)
 			{
 				OutString = default.RockClimb_Item_Armour_HasCharge;
 			}
@@ -193,11 +221,11 @@ static function bool AbilityTagExpandHandler(string InString, out string OutStri
 			return true;
 		
 		case 'TR_RockClimb_Vest_HealthBuff':	
-			OutString = string(class'X2Ability_RockClimber'.default.RockClimbingVest_HealthBonus);	
+			OutString = string(class'X2Item_RockClimb'.default.TR_RockClimbing_HealthBonus_Vest);	
 			return true;
 			
 		case 'TR_RockClimb_Vest_MobilityBuff':	
-			OutString = string(class'X2Ability_RockClimber'.default.RockClimbingVest_MobilityBonus);	
+			OutString = string(class'X2Item_RockClimb'.default.TR_RockClimbing_MobilityBonus_Vest);	
 			return true;
 
 		default:	

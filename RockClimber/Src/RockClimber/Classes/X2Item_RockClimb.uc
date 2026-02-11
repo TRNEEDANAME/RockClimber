@@ -83,7 +83,7 @@ static function X2DataTemplate Create_TR_RockClimbing_Vest()
 	Template.ItemCat = 'defense';
 	Template.InventorySlot = eInvSlot_Utility;
 
-	if (default.ockClimbing_RevImage_Vest)
+	if (default.RockClimbing_RevImage_Vest)
 	{
 		Template.strImage = "img:///TR_RockClimb.GeckoVest_rev";
 	}

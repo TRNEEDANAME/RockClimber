@@ -26,7 +26,7 @@ var config int TR_RockClimb_InitialCharge_Item;
 var config int TR_RockClimb_NumTurns_Item;
 
 var config bool TR_RockClimb_IsFree_Item;
-var config bool TR_RockClimb_ItemConsume;
+var config bool TR_RockClimb_Consume_Item;
 var config bool TR_RockClimb_IsPassive_Item;
 var config bool TR_RockClimb_HasCharge_Item;
 
@@ -50,6 +50,7 @@ var config int TR_RockClimb_NumTurns_Item_Vest;
 var config bool TR_RockClimb_IsFree_Item_Vest;
 var config bool TR_RockClimb_IsPassive_Item_Vest;
 var config bool TR_RockClimb_HasCharge_Item_Vest;
+var config bool TR_RockClimb_Consume_Item_Vest;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -96,7 +97,7 @@ static function X2AbilityTemplate TR_RockClimb_Ability()
 	Template.bDisplayInUITooltip = true;
 
 	Template.bUniqueSource = true;
-	Template.bCrossClassEligible = default.TR_RockClimb_Ability_IsCrossClass;
+	Template.bCrossClassEligible = default.TR_RockClimb_IsCrossClass_Ability;
 
 	ActionPointCost = new class'X2AbilityCost_ActionPoints';
 	ActionPointCost.iNumPoints = default.TR_RockClimb_AP_Cost_Ability;
@@ -108,7 +109,7 @@ static function X2AbilityTemplate TR_RockClimb_Ability()
 	Cooldown.iNumTurns = default.TR_RockClimb_Cooldown_Ability; 
 	Template.AbilityCooldown = Cooldown;
 
-	if (default.TR_RockClimbAbility_HasCharge)
+	if (default.TR_RockClimb_HasCharge_Ability)
 	{
 		Charges = new class'X2AbilityCharges';
 		Charges.InitialCharges = default.TR_RockClimb_InitialCharge_Ability;
@@ -147,10 +148,6 @@ static function X2AbilityTemplate TR_RockClimb_AbilityPassive()
 {
 	local X2AbilityTemplate						Template;
 	local X2Effect_PersistentTraversalChange    Climb;
-	local X2AbilityCost_ActionPoints    	    ActionPointCost;
-	local X2AbilityCooldown             	    Cooldown;
-	local X2AbilityCharges              	    Charges;
-	local X2AbilityCost_Charges         	    ChargeCost;
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'TR_RockClimb_Ability_Passive');
 
@@ -236,7 +233,7 @@ static function X2AbilityTemplate TR_RockClimb_Item()
 	Cooldown = new class'X2AbilityCooldown';   
 	Cooldown.iNumTurns = default.TR_RockClimb_Cooldown_Item; 
 	Template.AbilityCooldown = Cooldown;
-	if (default.TR_RockClimbItem_HasCharge)
+	if (default.TR_RockClimb_HasCharge_Item)
 	{
 		Charges = new class'X2AbilityCharges';
 		Charges.InitialCharges = default.TR_RockClimb_InitialCharge_Item;
@@ -305,7 +302,7 @@ static function X2AbilityTemplate TR_RockClimb_Item_Armour()
 	Cooldown.iNumTurns = default.TR_RockClimb_Cooldown_Item_Armour; 
 	Template.AbilityCooldown = Cooldown;
 
-	if (default.TR_RockClimb_Item_Armour_HasCharge)
+	if (default.TR_RockClimb_HasCharge_Item_Armour)
 	{
 		Charges = new class'X2AbilityCharges';
 		Charges.InitialCharges = default.TR_RockClimb_InitialCharge_Item_Armour;
@@ -349,11 +346,6 @@ static function X2AbilityTemplate TR_RockClimb_Item_Vest()
 
 	`CREATE_X2ABILITY_TEMPLATE(Template, 'TR_RockClimb_Item_Vest');
 
-	if (default.TR_RockClimb_Consume_Item_Vest)
-	{
-		Template.AbilityCosts.AddItem(new class'X2AbilityCost_ConsumeItem');
-	}
-
 	//setup
 	Template.IconImage = "img:///TR_RockClimb.RockClimb_abilityIcon";
 	Template.eAbilityIconBehaviorHUD = eAbilityIconBehavior_HideSpecificErrors;
@@ -378,7 +370,8 @@ static function X2AbilityTemplate TR_RockClimb_Item_Vest()
 	Cooldown = new class'X2AbilityCooldown';   
 	Cooldown.iNumTurns = default.TR_RockClimb_Cooldown_Item_Vest;
 	Template.AbilityCooldown = Cooldown;
-	if (default.TR_RockClimbItem_HasCharge)
+
+	if (default.TR_RockClimb_HasCharge_Item_Vest)
 	{
 		Charges = new class'X2AbilityCharges';
 		Charges.InitialCharges = default.TR_RockClimb_InitialCharge_Item_Vest;
