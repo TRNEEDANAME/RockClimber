@@ -10,7 +10,7 @@ var config bool TR_RockClimb_CanBeBuild_Item, TR_RockClimb_IsStratingItem_Item, 
 var config bool TR_RockClimb_CanBeBuild_Vest, TR_RockClimb_IsStratingItem_Vest, TR_RockClimb_IsInfinite_Vest;
 
 var config int TR_RockClimb_TradeValue_Item, TR_RockClimb_Cost_Item;
-var config int TR_RockClimb_TradeValue_Vest;
+var config int TR_RockClimb_TradeValue_Vest, TR_RockClimb_Cost_Vest;
 
 var config bool IsRockClimbingEnabled_Item, IsRockClimbingEnabled_Vest;
 var config bool RockClimb_RevImage_Item, RockClimbing_RevImage_Vest;
@@ -78,6 +78,7 @@ static function X2DataTemplate Create_TR_RockClimb_Item()
 static function X2DataTemplate Create_TR_RockClimbing_Vest()
 {
 	local X2EquipmentTemplate  Template;
+	local ArtifactCost			Resources;
 	
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'TR_RockClimbing_Vest');
 	Template.ItemCat = 'defense';
@@ -99,13 +100,15 @@ static function X2DataTemplate Create_TR_RockClimbing_Vest()
 	Template.Abilities.AddItem('TR_RockClimb_Item_Armour_StatBonus');
 
 	Template.CanBeBuilt = default.TR_RockClimb_CanBeBuild_Vest;
-    Template.StartingItem = default.TR_RockClimb_IsStratingItem_Vest;
+	Template.StartingItem = default.TR_RockClimb_IsStratingItem_Vest;
 	Template.bInfiniteItem = default.TR_RockClimb_IsInfinite_Vest;
 
     if (!default.TR_RockClimb_IsInfinite_Vest)
     {
-        Template.TradingPostValue = default.TR_RockClimb_TradeValue_Vest;
-
+		Template.TradingPostValue = default.TR_RockClimb_TradeValue_Vest;
+		Resources.ItemTemplateName = 'Supplies';
+		Resources.Quantity = default.TR_RockClimb_Cost_Vest;
+		Template.Cost.ResourceCosts.AddItem(Resources);
     }
 	Template.PointsToComplete = 0;
 	Template.Tier = 2;

@@ -46,64 +46,76 @@ static event OnPostTemplatesCreated()
 	ClassMgr = class'X2SoldierClassTemplateManager'.static.GetSoldierClassTemplateManager();
 
 	// Items
-
-	ClassMgr.FindDataTemplateAllDifficulties(TemplateName, DifficultyVariants);
-	for (idx = 0; idx < DifficultyVariants.Length; idx++)
+	foreach default.RockClimb_Items(Object)
 	{
-		ItemTemplate = X2ItemTemplate(DifficultyVariants[idx]);
-		if (ItemTemplate != none)
+		ItemMgr.FindDataTemplateAllDifficulties(Object, DifficultyVariants);
+		for (idx = 0; idx < DifficultyVariants.Length; ++idx)
 		{
-			ItemTemplate = ClassMgr.FindItemTemplate(TemplateName);
-			foreach default.RockClimb_Items (Object)
+			ItemTemplate = X2EquipmentTemplate(DifficultyVariants[idx]);
+			if (ItemTemplate == none)
+				continue;
+
+			if (ItemTemplate.Abilities.Find('TR_RockClimb_Item') == INDEX_NONE)
 			{
 				ItemTemplate.Abilities.AddItem('TR_RockClimb_Item');
 			}
 		}
 	}
 
-
-	foreach default.RockClimb_Items (Object)
-	{
-		ItemTemplate = X2EquipmentTemplate(ItemMgr.FindItemTemplate(Object));
-		if (ItemTemplate != none)
-		{
-			ItemTemplate.Abilities.AddItem('TR_RockClimb_Item');
-		}
-	}
-
 	// Armours
-	foreach default.RockClimb_Armours (Object)
+	foreach default.RockClimb_Armours(Object)
 	{
-		ArmoursTemplate = X2ArmorTemplate(ItemMgr.FindItemTemplate(Object));
-		if (ArmoursTemplate != none)
+		ItemMgr.FindDataTemplateAllDifficulties(Object, DifficultyVariants);
+		for (idx = 0; idx < DifficultyVariants.Length; ++idx)
 		{
-			ArmoursTemplate.Abilities.AddItem('TR_RockClimb_Item_Armour');
+			ArmoursTemplate = X2ArmorTemplate(DifficultyVariants[idx]);
+			if (ArmoursTemplate == none)
+				continue;
+
+			if (ArmoursTemplate.Abilities.Find('TR_RockClimb_Item_Armour') == INDEX_NONE)
+			{
+				ArmoursTemplate.Abilities.AddItem('TR_RockClimb_Item_Armour');
+			}
 		}
 	}
 
 	// Character Groups
 	foreach default.RockClimber_CharacterGroups(TemplateName)
 	{
-		CharTemplate = CharMgr.FindCharacterTemplate(TemplateName);
-		if (CharTemplate == none)
-			continue;
+		CharMgr.FindDataTemplateAllDifficulties(TemplateName, DifficultyVariants);
+		for (idx = 0; idx < DifficultyVariants.Length; ++idx)
+		{
+			CharTemplate = X2CharacterTemplate(DifficultyVariants[idx]);
+			if (CharTemplate == none)
+				continue;
 
-		if (default.RockClimber_CharacterGroups.Find(CharTemplate.CharacterGroupName) != INDEX_NONE)
-		{²
-			CharTemplate.Abilities.AddItem('TR_RockClimb_Ability_Passive');
+			if (default.RockClimber_CharacterGroups.Find(CharTemplate.CharacterGroupName) == INDEX_NONE)
+				continue;
+
+			if (CharTemplate.Abilities.Find('TR_RockClimb_Ability_Passive') == INDEX_NONE)
+			{
+				CharTemplate.Abilities.AddItem('TR_RockClimb_Ability_Passive');
+			}
 		}
 	}
 
-    // Units
+	// Units
 	foreach default.RockClimber_UnitNames(TemplateName)
 	{
-		CharTemplate = CharMgr.FindCharacterTemplate(TemplateName);
-		if (CharTemplate == none)
-			continue;
-
-		if (default.RockClimber_UnitNames.Find(CharTemplate.CharacterGroupName) != INDEX_NONE)
+		CharMgr.FindDataTemplateAllDifficulties(TemplateName, DifficultyVariants);
+		for (idx = 0; idx < DifficultyVariants.Length; ++idx)
 		{
-			CharTemplate.Abilities.AddItem('TR_RockClimb_Ability_Passive');
+			CharTemplate = X2CharacterTemplate(DifficultyVariants[idx]);
+			if (CharTemplate == none)
+				continue;
+
+			if (default.RockClimber_UnitNames.Find(CharTemplate.CharacterGroupName) == INDEX_NONE)
+				continue;
+
+			if (CharTemplate.Abilities.Find('TR_RockClimb_Ability_Passive') == INDEX_NONE)
+			{
+				CharTemplate.Abilities.AddItem('TR_RockClimb_Ability_Passive');
+			}
 		}
 	}
 
