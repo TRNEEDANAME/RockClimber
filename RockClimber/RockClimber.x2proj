@@ -44,7 +44,6 @@
     <Content Include="Config\XComRockClimb.ini" />
     <Content Include="Config\Base\XComClassData.ini" />
     <Content Include="Src\RockClimber\Classes\X2Ability_RockClimber.uc" />
-    <Content Include="Src\RockClimber\Classes\X2Effect_WallClimbing.uc" />
     <Content Include="Src\RockClimber\Classes\X2Item_RockClimb.uc" />
     <Content Include="Config\Base\XComGameData.ini" />
     <Content Include="Config\Compatibility\ArmourUpgrade\XComArmorUpgrades.ini" />
@@ -53,5 +52,8 @@
     <Content Include="Config\Compatibility\Proving Ground Overhaul\XComStrategyTuning.ini" />
     <Content Include="Src\WallClimbOverride\Classes\X2Action_MoveClimbWall_Override.uc" />
     <Content Include="Content\TR_RockClimb.upk" />
+    <Content Include="PublishedFileId.ID" />
+    <Content Include="Config\XComRockClimb_AddingAbility.ini" />
+    <Content Include="Config\XComRockClimb_General.ini" />
   </ItemGroup>
 </Project>

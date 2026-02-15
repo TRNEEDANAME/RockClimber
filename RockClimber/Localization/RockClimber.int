@@ -1,9 +1,0 @@
-[X2DLCInfo_RockClimber]
-
-RockClimbAbility_HasCharge = "Can be used <Ability:TR_RockClimb_NumCharge_Ability> times per mission, with"
-RockClimbItem_HasCharge = "Can be used <Ability:TR_RockClimb_NumCharge_Item/> times per mission, with"
-RockClimb_Item_Armour_HasCharge = "Can be used <Ability:TR_RockClimb_NumCharge_Item_Armour/> times per mission, with"
-
-RockClimbAbility_NoCharge = "It has"
-RockClimbItem_NoCharge = "It has"
-RockClimb_Item_Armour_NoCharge = "It has"

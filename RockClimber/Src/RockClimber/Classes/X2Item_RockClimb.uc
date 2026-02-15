@@ -4,7 +4,7 @@
 //  PURPOSE : Create the Rock climb item & vest
 //---------------------------------------------------------------------------------------
 
-class X2Item_RockClimb extends X2Item_DefaultUtilityItems config (RockClimb);
+class X2Item_RockClimb extends X2Item_DefaultUtilityItems config (RockClimb_General);
 
 var config bool TR_RockClimb_CanBeBuild_Item, TR_RockClimb_IsStratingItem_Item, TR_RockClimb_IsInfinite_Item;
 var config bool TR_RockClimb_CanBeBuild_Vest, TR_RockClimb_IsStratingItem_Vest, TR_RockClimb_IsInfinite_Vest;
@@ -13,9 +13,8 @@ var config int TR_RockClimb_TradeValue_Item, TR_RockClimb_Cost_Item;
 var config int TR_RockClimb_TradeValue_Vest, TR_RockClimb_Cost_Vest;
 
 var config bool IsRockClimbingEnabled_Item, IsRockClimbingEnabled_Vest;
-var config bool RockClimb_RevImage_Item, RockClimbing_RevImage_Vest;
 
-var config int TR_RockClimbing_HealthBonus_Vest, TR_RockClimbing_MobilityBonus_Vest;
+var config(RockClimb) int TR_RockClimbing_HealthBonus_Vest, TR_RockClimbing_MobilityBonus_Vest;
 
 static function array<X2DataTemplate> CreateTemplates()
 {
@@ -41,15 +40,7 @@ static function X2DataTemplate Create_TR_RockClimb_Item()
 
 	`CREATE_X2TEMPLATE(class'X2EquipmentTemplate', Template, 'TR_RockClimb_Item');
 
-	if (default.RockClimb_RevImage_Item)
-	{
-		Template.strImage = "img:///TR_RockClimb.WallClimb_Item_rev";
-	}
-
-	else
-	{
-		Template.strImage = "img:///TR_RockClimb.WallClimb_Item_norm";
-	}
+	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_Microservo_Module";
 
 	Template.ItemCat = 'defense';
 	Template.InventorySlot = eInvSlot_Utility;
@@ -84,20 +75,11 @@ static function X2DataTemplate Create_TR_RockClimbing_Vest()
 	Template.ItemCat = 'defense';
 	Template.InventorySlot = eInvSlot_Utility;
 
-	if (default.RockClimbing_RevImage_Vest)
-	{
-		Template.strImage = "img:///TR_RockClimb.GeckoVest_rev";
-	}
-
-	else
-	{
-		Template.strImage = "img:///TR_RockClimb.GeckoVest_Norm";
-	}
+	Template.strImage = "img:///UILibrary_StrategyImages.X2InventoryIcons.Inv_Tarantula_Suit";
 
 	Template.EquipSound = "StrategyUI_Vest_Equip";
 
-	Template.Abilities.AddItem('TR_RockClimb_Item_Armour');
-	Template.Abilities.AddItem('TR_RockClimb_Item_Armour_StatBonus');
+	Template.Abilities.AddItem('TR_RockClimb_Item_Vest');
 
 	Template.CanBeBuilt = default.TR_RockClimb_CanBeBuild_Vest;
 	Template.StartingItem = default.TR_RockClimb_IsStratingItem_Vest;

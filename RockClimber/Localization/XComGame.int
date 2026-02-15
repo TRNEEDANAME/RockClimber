@@ -1,35 +1,48 @@
 [TR_RockClimb_Ability X2AbilityTemplate]
 LocFriendlyName="Rock Climb"
-LocLongDescription="Allows the user to scale vertical surfaces quickly. <Ability:TR_RockClimbAbility_HasCharge> a recharge time of <Ability:TR_RockClimb_Cooldown_Ability/> turns. Each use costs <Ability:TR_RockClimb_AP_Cost_Ability/> action points."
+LocLongDescription="Allows the user to scale vertical surfaces quickly. The ability has a recharge time of <font color='#3ABD23'><Ability:TR_RockClimb_Cooldown_Ability/></font> turns. Each use costs <font color='#3ABD23'><Ability:TR_RockClimb_AP_Cost_Ability/></font> action points."
 LocHelpText="Allows the user to scale vertical surfaces quickly."
-LocPromotionPopupText="<Bullet/> Climb walls"
+LocPromotionPopupText="<Bullet/></font> Climb walls"
 LocFlyOverText="Rock Climb"
 
 [TR_RockClimb_Item X2AbilityTemplate]
 LocFriendlyName="Rock Climbing Gear"
-LocLongDescription="This gear allows the user to scale vertical surfaces quickly. <Ability:TR_RockClimbItem_HasCharge> a recharge time of <Ability:TR_RockClimb_Cooldown_Item/> turns. Each use costs <Ability:TR_RockClimb_AP_Cost_Item/> action points."
+LocLongDescription="This armour allows the user to scale vertical surfaces quickly. Can be used <font color='#3ABD23'><Ability:TR_RockClimb_InitialCharge_Item/></font> times per mission, with a recharge time of <font color='#3ABD23'><Ability:TR_RockClimb_Cooldown_Item/></font> turns. Each use costs <font color='#3ABD23'><Ability:TR_RockClimb_AP_Cost_Item/></font> action points."
 LocHelpText="Allows the user to scale vertical surfaces quickly."
-LocPromotionPopupText="<Bullet/> Climb walls"
+LocPromotionPopupText="<Bullet/></font> Climb walls"
 LocFlyOverText="Rock Climbing Gear"
 
 [TR_RockClimb_Item_Armour X2AbilityTemplate]
 LocFriendlyName="Rock Climbing armour"
-LocLongDescription="This armour allows the user to scale vertical surfaces quickly. <Ability:TR_RockClimb_Item_Armour_HasCharge> a recharge time of <Ability:TR_RockClimb_Cooldown_Item_Armour/> turns. Each use costs <Ability:TR_RockClimb_AP_Cost_Item_Armour/> action points."
+LocLongDescription="This armour allows the user to scale vertical surfaces quickly. Works indefinitely."
 LocHelpText="Allows the user to scale vertical surfaces quickly."
-LocPromotionPopupText="<Bullet/> Climb walls"
+LocPromotionPopupText="<Bullet/></font> Climb walls"
+LocFlyOverText="Rock Climbing armour"
+
+[TR_RockClimb_Item_Vest X2AbilityTemplate]
+LocFriendlyName="Rock Climbing Vest"
+LocLongDescription="This armour allows the user to scale vertical surfaces quickly. The ability has a recharge time of <font color='#3ABD23'><Ability:TR_RockClimb_Cooldown_Item_Vest/></font> turns. Each use costs <font color='#3ABD23'><Ability:TR_RockClimb_AP_Cost_Item_Vest/></font> action points."
+LocHelpText="Allows the user to scale vertical surfaces quickly."
+LocPromotionPopupText="<Bullet/></font> Climb walls"
+LocFlyOverText="Rock Climbing Vest"
+
+[TR_RockClimb_Ability_Passive X2AbilityTemplate]
+LocFriendlyName="Rock Climbing passive"
+LocLongDescription="This unit can scale vertical surfaces quickly."
+LocHelpText="Allows the user to scale vertical surfaces quickly."
+LocPromotionPopupText="<Bullet/></font> Climb walls"
 LocFlyOverText="Rock Climbing armour"
 
 
-[TR_RockClimbingVest X2EquipmentTemplate]
+[TR_RockClimbing_Vest X2EquipmentTemplate]
 FriendlyName="Rock climbing vest"
 FriendlyNamePlural="Rock climbing vests"
-BriefSummary="This vest allows the user to scale vertical surfaces quickly, making it useful for quickly accessing high or difficult-to-reach areas. \n <Bullet/> It also boost the soldier's health by <Ability:TR_RockClimb_Vest_HealthBuff> and mobility by <Ability:RockClimbingVest_MobilityBonus/>."
+BriefSummary="This vest allows the user to scale vertical surfaces quickly, making it useful for quickly accessing high or difficult-to-reach areas. \n <Bullet/></font> It also boosts the soldier's health by <font color='#3ABD23'><Ability:TR_RockClimb_Vest_HealthBuff></font> and mobility by <font color='#3ABD23'><Ability:TR_RockClimb_Vest_MobilityBuff></font>."
 TacticalText="Allows the user to scale vertical surfaces quickly."
-AbilityDescName="Rock climbing vest"
 
 [TR_RockClimb_Item X2EquipmentTemplate]
 FriendlyName="Rock climbing gear"
 FriendlyNamePlural="Rock climbing gears"
 BriefSummary="This gear allows the user to scale vertical surfaces quickly, making it useful for quickly accessing high or difficult-to-reach areas."
 TacticalText="Allows the user to scale vertical surfaces quickly."
-AbilityDescName="Rock climbing gear"
+
