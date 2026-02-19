@@ -1,6 +1,6 @@
 ## Description
 
-This is the github repository of the **mod project** folder for my [Rock climb mod](Link Here). 
+This is the github repository of the **mod project** folder for my [Rock climb mod]([Link Here](https://steamcommunity.com/sharedfiles/filedetails/?id=3667134306). 
 This will be the most up to date project folder from the mod, even before it's on steam.
 
 ## How to build the mod
@@ -28,3 +28,4 @@ It's easier for me, but you can change the code without compiling the mod again.
 
 ### Can I fork it ?
 As per the MIT Licence, you can. Just credit the original author (me).
+
