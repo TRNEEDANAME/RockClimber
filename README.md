@@ -17,6 +17,11 @@ This will be the most up to date project folder from the mod, even before it's o
 
 - [X2WOTCCommunityHighlander v1.24.0](https://steamcommunity.com/workshop/filedetails/?id=1134256495)
 
+#### Supported mods
+
+- [Armour Upgrades](https://steamcommunity.com/sharedfiles/filedetails/?id=2644686699) (vest cannot be given to Light plated & powered armours, as well as the viper king armours)
+- [Covert Infiltration](https://steamcommunity.com/sharedfiles/filedetails/?id=2567230730) (item remove 2h, vest remove 4h)
+- [Proving Ground Overhaul](https://steamcommunity.com/sharedfiles/filedetails/?id=2259746446)
 
 ## FAQ
 
@@ -28,5 +33,6 @@ It's easier for me, but you can change the code without compiling the mod again.
 
 ### Can I fork it ?
 As per the MIT Licence, you can. Just credit the original author (me).
+
 
 
